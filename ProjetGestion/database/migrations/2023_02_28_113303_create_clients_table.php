@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string("pays");
             $table->string("adresse");
             $table->string("telephone1");
-            $table->string("email")->nullable();
             $table->string("telephone2")->nullable();
             $table->string("pieceIdentite");
             $table->string("noPieceIdentite");
