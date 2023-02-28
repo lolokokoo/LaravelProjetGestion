@@ -10,5 +10,4 @@ class DureeLocation extends Model
     use HasFactory;
 
     public $timestamps = false;
-
 }

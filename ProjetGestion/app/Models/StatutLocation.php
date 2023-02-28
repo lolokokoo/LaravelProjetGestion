@@ -10,4 +10,5 @@ class StatutLocation extends Model
     use HasFactory;
     public $timestamps = false;
 
+
 }

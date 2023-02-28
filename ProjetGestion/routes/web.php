@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Article;
+use App\Models\ProprieteArticle;
+use App\Models\TypeArticle;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/articles', function () {
+    return Article::with("typeArticle")->get();
+});
+
+Route::get('/types', function () {
+    return TypeArticle::with("articles")->get();
+});
+
