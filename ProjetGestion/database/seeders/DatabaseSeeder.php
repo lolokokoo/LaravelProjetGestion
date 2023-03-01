@@ -17,11 +17,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TypeArticleTableSeeder::class,
             ArticleTableSeeder::class, //Must be created after Type Article
+            RoleSeeder::class, //must be created before User
             UserSeeder::class,
             DureeLocationTableSeeder::class,
             StatutLocationSeeder::class,
             ClientSeeder::class,
-            RoleSeeder::class,
             PermissionSeeder::class,
         ]);
     }

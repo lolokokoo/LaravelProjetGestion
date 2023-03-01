@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nom',
         'email',
         'password',
     ];
@@ -57,5 +57,14 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, "user_permission", "user_id", "permission_id");
     }
 
+    public function hasRole($role) //Vérifie si l'user à le role en question
+    {
+        return $this->roles()->where('name', $role)->first() !== null;
+    }
+
+    public function hasAnyRole($roles)//Vérifie si l'user à au moins un des $roles
+    {
+        return $this->roles()->whereIn('name', $roles)->first() !== null;
+    }
 
 }
