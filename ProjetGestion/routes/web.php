@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +22,9 @@ Route::get('/', function () {
 })->middleware(['auth', 'verified'])->name('home');
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/habilitations/utilisateurs',
+    [UserController::class, 'index'])
+    ->name('utilisateurs.index')
+    ->middleware("can:admin"); //On restreint l'acces

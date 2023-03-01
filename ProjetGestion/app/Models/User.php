@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -19,6 +20,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'nom',
+        'prenom',
+        'sexe',
+        'pieceIdentite',
+        'numeroPieceIdentite',
+        'telephone1',
+        'telephone2',
         'email',
         'password',
     ];
@@ -47,24 +54,24 @@ class User extends Authenticatable
         return $this->hasMany(Paiment::class);
     }
 
-    public function roles()//Relation ManyToMany
+    public function roles(): BelongsToMany//Relation ManyToMany
     {
-        return $this->belongsToMany(User::class, "user_role", "user_id", "role_id");
+        return $this->belongsToMany(Role::class);
     }
 
-    public function permissions()//Relation ManyToMany
+    public function permissions(): BelongsToMany//Relation ManyToMany
     {
-        return $this->belongsToMany(User::class, "user_permission", "user_id", "permission_id");
+        return $this->belongsToMany(Permission::class);
     }
 
     public function hasRole($role) //Vérifie si l'user à le role en question
     {
-        return $this->roles()->where('name', $role)->first() !== null;
+        return in_array($role, userRoles());
     }
 
-    public function hasAnyRole($roles)//Vérifie si l'user à au moins un des $roles
+    public function hasAnyRole($roles)//Vérifie si l'user à un de ces roles
     {
-        return $this->roles()->whereIn('name', $roles)->first() !== null;
+        //return in_array(userRole(), $roles);
     }
 
 }
