@@ -22,7 +22,7 @@ class ClientFactory extends Factory
         return [
             "nom" => $this->faker->lastName,
             "prenom" => $this->faker->firstName,
-            'sexe' => array_rand(['F', "H"], 1),
+            'sexe' => ['H', 'F'][rand(0,1)],
             "dateNaissance" => $this->faker->dateTimeBetween("1990-01-01", "2005-12-31"),
             'lieuNaissance' => $pays . ' ' . $ville,
             'nationalite' => $pays,
@@ -31,7 +31,7 @@ class ClientFactory extends Factory
             'adresse' => $this->faker->address,
             'telephone1' => $this->faker->phoneNumber,
             'telephone2' => $this->faker->phoneNumber,
-            'pieceIdentite' => array_rand(["CNI", "PASSPORT", "PERMIS DE CONDUIRE"], 1),
+            'pieceIdentite' => ['CNI', 'PASSPORT', 'PERMIS DE CONDUIRE'][rand(0,2)],
             'noPieceIdentite' => $this->faker->creditCardNumber,
         ];
     }

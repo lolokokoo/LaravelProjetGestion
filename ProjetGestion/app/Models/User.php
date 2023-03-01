@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -49,7 +50,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function paiments()
+    public function paiments(): hasMany
     {
         return $this->hasMany(Paiment::class);
     }
@@ -64,7 +65,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Permission::class);
     }
 
-    public function hasRole($role) //Vérifie si l'user à le role en question
+    public function hasRole($role):bool //Vérifie si l'user à le role en question
     {
         return in_array($role, userRoles());
     }
@@ -72,6 +73,11 @@ class User extends Authenticatable
     public function hasAnyRole($roles)//Vérifie si l'user à un de ces roles
     {
         //return in_array(userRole(), $roles);
+    }
+
+    public function getAllRolesNamesAttribute():string
+    {
+        return $this->roles->pluck('nom')->implode(' | ');
     }
 
 }

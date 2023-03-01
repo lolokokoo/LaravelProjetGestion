@@ -1,3 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "~admin-lte/plugins/fontawesome-free/css/all.css";
+@import "~admin-lte/dist/css/adminlte.css";
+
+
+.photoSexe{
+    width: 24px;
+}

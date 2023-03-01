@@ -20,11 +20,11 @@ class UserFactory extends Factory
         return [
             'nom' => fake()->lastName(),
             'prenom' => fake()->firstName(),
-            'sexe' => array_rand(['H', 'F'], 1),
+            'sexe' =>['H', 'F'][rand(0,1)],
             'email' => fake()->unique()->safeEmail(),
             'telephone1' => fake()->unique()->phoneNumber(),
             'telephone2' => fake()->unique()->phoneNumber(),
-            'pieceIdentite' => array_rand(['CNI', 'PASSPORT', 'PERMIS DE CONDUIRE'], 1),
+            'pieceIdentite' => ['CNI', 'PASSPORT', 'PERMIS DE CONDUIRE'][rand(0,2)],
             'numeroPieceIdentite' => $this->faker->unique()->creditCardNumber,
             'photo' => $this->faker->imageUrl,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

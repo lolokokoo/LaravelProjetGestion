@@ -19,7 +19,8 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "admin-lte": "3.2"
+        "admin-lte": "3.2",
+        "bootstrap": "^5.2.3"
     },
     "name": "projetgestion",
     "description": "The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).",
