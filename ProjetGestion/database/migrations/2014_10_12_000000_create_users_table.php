@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('numeroPieceIdentite');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('photo');
             $table->rememberToken();
             $table->timestamps();
         });

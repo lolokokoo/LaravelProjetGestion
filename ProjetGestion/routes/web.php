@@ -33,7 +33,9 @@ Route::group([
         "prefix" => "habilitations",
         "as" => "habilitations."
     ], function (){
-        Route::get("/utilisateurs", Utilisateurs::class)->name("users.index");
+        Route::get("/index", [Utilisateurs::class,'index'])->name("users.index");
+        Route::get('/create', [Utilisateurs::class, 'create'])->name('users.create');
+        Route::post('/store', [Utilisateurs::class, 'store'])->name('users.store');
     });
 });
 
