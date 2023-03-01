@@ -19,11 +19,6 @@ class UserSeeder extends Seeder
         $users = User::all();
         foreach ($users as $user){
             $user->roles()->attach(rand(1,count($roles)));
-            $user->roles()->attach(rand(1,count($roles)));
-            $user->roles()->attach(rand(1,count($roles)));
-            $user->roles()->attach(rand(1,count($roles)));
-            $user->roles()->attach(rand(1,count($roles)));
         }
-
     }
 }

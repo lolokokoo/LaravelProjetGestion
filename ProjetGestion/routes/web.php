@@ -24,7 +24,17 @@ Route::get('/', function () {
 require __DIR__.'/auth.php';
 
 
-Route::get('/habilitations/utilisateurs',
-    [UserController::class, 'index'])
-    ->name('utilisateurs.index')
-    ->middleware("can:admin"); //On restreint l'acces
+Route::group([
+    "middleware" => ["auth", "auth.admin"],
+    "as" => "admin."
+], function (){
+    Route::group([
+        "prefix" => "habilitations",
+        "as" => "habilitations."
+    ], function (){
+        Route::get("/utilisateurs", [UserController::class, 'index'])->name("users.index");
+    });
+});
+
+
+
