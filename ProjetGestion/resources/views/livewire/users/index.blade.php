@@ -37,7 +37,6 @@
                         </thead>
                         <tbody>
                         @foreach($users as $user)
-
                             <tr>
                                 <td>
                                     @if($user->sexe == "F")
@@ -45,8 +44,12 @@
                                     @else
                                         <img src="{{ asset('img/homme.png') }}" style="width: 24px"/>
                                     @endif
+                                </td><!-- On affiche en vert l'utilisateur connecté -->
+                                <td @if($user->id == auth()->user()->id)
+                                        class="text-success"> (Vous) {{ $user->prenom . ' ' . $user->nom}}
+                                    @else >{{ $user->prenom . ' ' . $user->nom}}
+                                    @endif
                                 </td>
-                                <td>{{ $user->prenom . ' ' . $user->nom}}</td>
                                 <td>
                                     {{ $user->getAllRolesNamesAttribute() }}
                                 </td>
