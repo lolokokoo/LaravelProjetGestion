@@ -62,7 +62,7 @@ class User extends Authenticatable
 
     public function permissions(): BelongsToMany//Relation ManyToMany
     {
-        return $this->belongsToMany(Permission::class);
+        return $this->belongsToMany(Permission::class, 'user_permission');
     }
 
     public function hasRole($role):bool //Vérifie si l'user à le role en question

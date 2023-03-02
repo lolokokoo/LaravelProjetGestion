@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
             DureeLocationTableSeeder::class,
             StatutLocationSeeder::class,
             ClientSeeder::class,
-            PermissionSeeder::class,
         ]);
     }
 }

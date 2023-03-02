@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -31,6 +33,10 @@ class Utilisateurs extends Component
         'numeroPieceIdentite.unique' => 'Ce numéro de pièce d\'identité est déjà utilisé.',
         'password.required' => 'Le champ mot de passe est obligatoire.'
     ];
+
+    public $rolesPermissions = [];
+
+
 
     public function index()
     {
@@ -70,11 +76,15 @@ class Utilisateurs extends Component
 
     public function edit($id)
     {
-        $user = User::find($id);
-        if (!$user) {
+        if (!User::find($id)) {
             abort(404, 'User not found.');
         }
-        return view('livewire.users.edit', compact('user'));
+        $user = User::find($id);
+        $this->userRoles($user); //définie tout les roles et permissions de l'utilisateur dans le tableau $rolePermission
+        return view('livewire.users.edit', [
+            'user' => $user,
+            'rolesPermissions' => $this->rolesPermissions
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -101,10 +111,10 @@ class Utilisateurs extends Component
 
     public function delete($id)
     {
-        User::destroy($id);
         if (!User::find($id)) {
             abort(404, 'User not found.');
         }
+        User::destroy($id);
         return redirect()->route('admin.users.index')->with('success', 'Utilisateur supprimé avec succès!');
     }
 
@@ -116,13 +126,46 @@ class Utilisateurs extends Component
      */
     public function editPassword($id)
     {
-        $user = User::find($id);
         if (!User::find($id)) {
             abort(404, 'User not found.');
         }
+        $user = User::find($id);
         $user->password = (Hash::make($this->defaultPassword));
         $user->save();
         return redirect()->route('admin.users.edit', ['id' => $id])->with('success', 'Mot de passe réinitialisé avec succes!');
     }
+
+    private function userRoles($user)
+    {
+        $toutLesNomsDeRoles = Role::all()->pluck('nom')->toArray();
+        $toutLesIdsDeRoles = Role::all()->pluck('id')->toArray();
+        $IdsRolesUser = $user->roles->pluck('id')->toArray(); //Ids des roles de l'user dans un tableau
+
+        $toutLesNomsDePermissions = Permission::all()->pluck('nom')->toArray();
+        $toutLesIdsDePermissions = Permission::all()->pluck('id')->toArray();
+        $IdsPermissionsUser = $user->permissions->pluck('id')->toArray(); //Ids des permissions de l'user dans un tableau
+
+        $this->rolesPermissions["roles"] = [];
+        $this->rolesPermissions["permissions"] = [];
+
+
+        foreach ($toutLesIdsDeRoles as $roleId){
+            if (in_array($roleId, $IdsRolesUser)){
+                array_push($this->rolesPermissions["roles"], ["role_id" => $roleId, "role_nom" => $toutLesNomsDeRoles[$roleId - 1], "checked" => true]);
+            }else{
+                array_push($this->rolesPermissions["roles"], ["role_id" => $roleId, "role_nom" => $toutLesNomsDeRoles[$roleId - 1], "checked" => false]);
+            }
+        }
+
+        foreach ($toutLesIdsDePermissions as $permissionId){
+            if (in_array($permissionId, $IdsPermissionsUser)){
+                array_push($this->rolesPermissions["permissions"], ["permission_id" => $permissionId, "permission_nom" => $toutLesNomsDePermissions[$permissionId - 1], "checked" => true]);
+            }else{
+                array_push($this->rolesPermissions["permissions"], ["permission_id" => $permissionId, "permission_nom" => $toutLesNomsDePermissions[$permissionId - 1], "checked" => false]);
+            }
+        }
+        //dd($this->rolesPermissions);
+    }
+
 
 }

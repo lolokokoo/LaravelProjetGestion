@@ -20,7 +20,9 @@
     },
     "dependencies": {
         "admin-lte": "3.2",
-        "bootstrap": "^5.2.3"
+        "bootstrap": "^5.2.3",
+        "jquery": "^3.6.3",
+        "popper.js": "^1.16.1"
     },
     "name": "projetgestion",
     "description": "The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).",

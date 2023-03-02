@@ -98,7 +98,7 @@
                         <div class="card-body">
                             <ul>
                                 <li>
-                                    <a href="{{ route('admin.users.editPassword', ['id' => $user->id]) }}" class="btn btn-link">
+                                    <a href="{{ route('admin.users.editPassword', ['id' => $user->id]) }}" class="btn btn-link text-decoration-none">
                                         Réinitialiser le mot de passe par défaut
                                     </a>
 
@@ -118,8 +118,49 @@
                         <div class="card-header">
                             <h3 class="card-title"><i class="fas fa-fingerprint fa-2x"></i> Roles & permissions</h3>
                         </div>
+                        @foreach($rolesPermissions["roles"] as $role)
                         <div class="card-body">
-
+                            <div class="card-header d-flex justify-content-between rounded">
+                                <h4 class="card-title flex-grow-1">
+                                    <a  data-parent="#acordion"  href="" aria-expanded="true" class="text-decoration-none text-black">
+                                        {{ $role["role_nom"] }}
+                                    </a>
+                                </h4>
+                                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitchRole{{ $role["role_id"] }}"
+                                    @if($role["checked"])
+                                        checked
+                                    @endif
+                                    >
+                                    <label class="custom-control-label" for="customSwitchRole{{ $role["role_id"] }}"></label>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        <div class="p-3">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <th>Permissions</th>
+                                    <th></th>
+                                </thead>
+                                <tbody >
+                                @foreach($rolesPermissions["permissions"] as $permission)
+                                    <tr>
+                                        <td>{{ $permission["permission_nom"] }}</td>
+                                        <td>
+                                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                                <input type="checkbox" class="custom-control-input" id="customSwitchPermission{{ $permission["permission_id"] }}"
+                                                @if($permission["checked"])
+                                                    checked
+                                                @endif
+                                                >
+                                                <label class="custom-control-label" for="customSwitchPermission{{ $permission["permission_id"] }}"></label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
