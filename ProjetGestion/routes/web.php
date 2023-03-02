@@ -34,8 +34,13 @@ Route::group([
         "as" => "users."
     ], function (){
         Route::get("/index", [Utilisateurs::class,'index'])->name("index");
+
         Route::get('/create', [Utilisateurs::class, 'create'])->name('create');
         Route::post('/store', [Utilisateurs::class, 'store'])->name('store');
+
+        Route::get('/edit/{id}', [Utilisateurs::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [Utilisateurs::class, 'update'])->name('update');
+
         Route::get('/delete/{id}', [Utilisateurs::class, 'delete'])->where(['id' => '[0-9]+'])->name('delete');
     });
 });
