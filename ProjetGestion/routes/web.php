@@ -30,12 +30,12 @@ Route::group([
     "as" => "admin."
 ], function (){
     Route::group([
-        "prefix" => "habilitations",
-        "as" => "habilitations."
+        "prefix" => "users",
+        "as" => "users."
     ], function (){
-        Route::get("/index", [Utilisateurs::class,'index'])->name("users.index");
-        Route::get('/create', [Utilisateurs::class, 'create'])->name('users.create');
-        Route::post('/store', [Utilisateurs::class, 'store'])->name('users.store');
+        Route::get("/index", [Utilisateurs::class,'index'])->name("index");
+        Route::get('/create', [Utilisateurs::class, 'create'])->name('create');
+        Route::post('/store', [Utilisateurs::class, 'store'])->name('store');
     });
 });
 

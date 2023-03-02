@@ -60,6 +60,6 @@ class Utilisateurs extends Component
 
         User::create($validated);
 
-        return redirect()->route('admin.habilitations.users.index');
+        return redirect()->route('admin.users.index');
     }
 }

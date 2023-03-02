@@ -8,7 +8,7 @@
                     <h3 class="card-title"><i class="fa fa-user-plus fa-2x"></i> Formulaire de crétion d'un nouvel utilisateur</h3>
                 </div>
 
-                <form action="{{ route('admin.habilitations.users.store') }}" method="POST">
+                <form action="{{ route('admin.users.store') }}" method="POST">
                     @csrf
                     <div class="card-body">
                         <div class="row">
@@ -82,7 +82,7 @@
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Enregistrer</button>
-                        <a href="{{ route('admin.habilitations.users.index') }}"><button type="button"  class="btn btn-danger">Retour</button></a>
+                        <a href="{{ route('admin.users.index') }}"><button type="button"  class="btn btn-danger">Retour</button></a>
                     </div>
                 </form>
             </div>

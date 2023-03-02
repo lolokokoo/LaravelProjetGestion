@@ -9,7 +9,7 @@
                 <div class="card-header bg-primary d-flex align-items-center">
                     <h3 class="card-title flex-grow-1"><i class="fas fa-users fa-2x"></i> Liste des utilisateurs</h3>
                     <div class="card-tools d-flex align-items-center">
-                        <a href="{{ route('admin.habilitations.users.create') }}" class="btn btn-link text-white mr-4 d-block"><i class="fas fa-user-plus"></i> Nouvel utilisateur</a>
+                        <a href="{{ route('admin.users.create') }}" class="btn btn-link text-white mr-4 d-block"><i class="fas fa-user-plus"></i> Nouvel utilisateur</a>
                         <div class="input-group input-group-md" style="width: 250px;">
                             <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
                             <div class="input-group-append">
