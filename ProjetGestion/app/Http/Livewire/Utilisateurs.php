@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -70,6 +71,9 @@ class Utilisateurs extends Component
     public function edit($id)
     {
         $user = User::find($id);
+        if (!$user) {
+            abort(404, 'User not found.');
+        }
         return view('livewire.users.edit', compact('user'));
     }
 
@@ -86,6 +90,9 @@ class Utilisateurs extends Component
             'password' => 'required'
         ], $this->messagesError);
 
+        if (!User::find($id)) {
+            abort(404, 'User not found.');
+        }
         User::where('id', $id)->update($validated);
 
         return redirect()->route('admin.users.index')->with('success', 'Utilisateur édité avec succès!');
@@ -95,6 +102,9 @@ class Utilisateurs extends Component
     public function delete($id)
     {
         User::destroy($id);
+        if (!User::find($id)) {
+            abort(404, 'User not found.');
+        }
         return redirect()->route('admin.users.index')->with('success', 'Utilisateur supprimé avec succès!');
     }
 
@@ -102,12 +112,17 @@ class Utilisateurs extends Component
      * This function reset the password of an user
      *
      * @param $id
-     * @return void
+     *
      */
     public function editPassword($id)
     {
         $user = User::find($id);
+        if (!User::find($id)) {
+            abort(404, 'User not found.');
+        }
         $user->password = (Hash::make($this->defaultPassword));
         $user->save();
+        return redirect()->route('admin.users.edit', ['id' => $id])->with('success', 'Mot de passe réinitialisé avec succes!');
     }
+
 }

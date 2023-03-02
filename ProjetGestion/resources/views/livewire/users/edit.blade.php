@@ -99,9 +99,12 @@
                             <ul>
                                 <li>
                                     <a href="{{ route('admin.users.editPassword', ['id' => $user->id]) }}" class="btn btn-link">
-                                        Réinitialiser le mot de passe
+                                        Réinitialiser le mot de passe par défaut
                                     </a>
-                                    <span>Par défaut "password"</span>
+
+                                    @if(session('success'))
+                                        <div class="alert alert-success">{{ session('success') }}</div>
+                                    @endif
                                 </li>
                             </ul>
                         </div>
