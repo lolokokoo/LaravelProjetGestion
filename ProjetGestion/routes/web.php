@@ -36,6 +36,7 @@ Route::group([
         Route::get("/index", [Utilisateurs::class,'index'])->name("index");
         Route::get('/create', [Utilisateurs::class, 'create'])->name('create');
         Route::post('/store', [Utilisateurs::class, 'store'])->name('store');
+        Route::get('/delete/{id}', [Utilisateurs::class, 'delete'])->where(['id' => '[0-9]+'])->name('delete');
     });
 });
 

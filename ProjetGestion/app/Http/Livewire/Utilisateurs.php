@@ -62,4 +62,11 @@ class Utilisateurs extends Component
 
         return redirect()->route('admin.users.index')->with('success', 'Utilisateur créé avec succès!');
     }
+
+    public function delete($id)
+    {
+
+        User::destroy($id);
+        return redirect()->route('admin.users.index')->with('succes', 'Utilisateur supprimé avec succès!');
+    }
 }

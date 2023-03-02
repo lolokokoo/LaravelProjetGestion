@@ -70,11 +70,6 @@ class User extends Authenticatable
         return in_array($role, userRoles());
     }
 
-    public function hasAnyRole($roles)//Vérifie si l'user à un de ces roles
-    {
-        //return in_array(userRole(), $roles);
-    }
-
     public function getAllRolesNamesAttribute():string
     {
         return $this->roles->pluck('nom')->implode(' | ');

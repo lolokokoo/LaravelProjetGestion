@@ -53,7 +53,9 @@
                                 <td class="text-center">{{ $user->created_at->diffForHumans() }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-link"><i class="far fa-edit"></i></button>
-                                    <button class="btn btn-link"><i class="fa fa-trash-alt"></i></button>
+                                    <a href="{{ route('admin.users.delete', [$user->id]) }}">
+                                        <button class="btn btn-link"><i class="fa fa-trash-alt"></i></button>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
