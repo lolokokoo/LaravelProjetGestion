@@ -42,6 +42,8 @@ Route::group([
         Route::post('/update/{id}', [Utilisateurs::class, 'update'])->name('update');
 
         Route::get('/delete/{id}', [Utilisateurs::class, 'delete'])->where(['id' => '[0-9]+'])->name('delete');
+
+        Route::get('/editPassword/{id}',[Utilisateurs::class, 'editPassword'])->where(['id' => '[0-9]+'])->name('editPassword');
     });
 });
 

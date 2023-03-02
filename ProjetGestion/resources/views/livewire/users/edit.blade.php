@@ -87,5 +87,40 @@
                 </form>
             </div>
         </div>
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title"><i class="fas fa-lock fa-2x"></i> Réinitialisation de mot de passe</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>
+                                    <a href="{{ route('admin.users.editPassword', ['id' => $user->id]) }}" class="btn btn-link">
+                                        Réinitialiser le mot de passe
+                                    </a>
+                                    <span>Par défaut "password"</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-12 mt-4">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title"><i class="fas fa-fingerprint fa-2x"></i> Roles & permissions</h3>
+                        </div>
+                        <div class="card-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -12,6 +13,8 @@ use Livewire\WithPagination;
 class Utilisateurs extends Component
 {
     use  WithPagination;
+
+    private $defaultPassword = "password";
 
     private $messagesError =  [
         'nom.required' => 'Le champ nom est obligatoire.',
@@ -93,5 +96,18 @@ class Utilisateurs extends Component
     {
         User::destroy($id);
         return redirect()->route('admin.users.index')->with('success', 'Utilisateur supprimé avec succès!');
+    }
+
+    /**
+     * This function reset the password of an user
+     *
+     * @param $id
+     * @return void
+     */
+    public function editPassword($id)
+    {
+        $user = User::find($id);
+        $user->password = (Hash::make($this->defaultPassword));
+        $user->save();
     }
 }
