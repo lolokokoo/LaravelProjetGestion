@@ -114,11 +114,12 @@
 
 
                 <div class="col-md-12 mt-4">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title"><i class="fas fa-fingerprint fa-2x"></i> Roles & permissions</h3>
-                        </div>
-                        <form method="POST" action="{{ route('admin.users.editRoles', ['id' => $user->id]) }}">
+                    <form method="POST" action="{{ route('admin.users.editRoles', ['id' => $user->id]) }}">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title"><i class="fas fa-fingerprint fa-2x"></i> Roles & permissions</h3>
+                                <button type="submit" class="btn btn-danger float-right mt-1">Enregistrer les modifications</button>
+                            </div>
                             @csrf
                             @foreach($rolesPermissions["roles"] as $role)
                                 <div class="card-body">
@@ -162,10 +163,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-                                <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
