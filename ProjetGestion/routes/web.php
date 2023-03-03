@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProprieteTypeArticleController;
 use App\Http\Controllers\TypeArticleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UtilisateursController;
@@ -62,22 +61,6 @@ Route::group([
 
         Route::get("/delete/{id}", [TypeArticleController::class,'delete'])->name("delete");
 
-    });
-
-    Route::group([
-        "prefix" => "proprietetypearticle",
-        "as" => "proprietetypearticle."
-    ], function (){
-        Route::get("/show/{id}", [ProprieteTypeArticleController::class,'show'])->name("show");
-
-        Route::get("/create", [ProprieteTypeArticleController::class,'create'])->name("create");
-        Route::post("/store", [ProprieteTypeArticleController::class,'store'])->name("store");
-
-
-        Route::get("/edit/{id}", [ProprieteTypeArticleController::class,'edit'])->name("edit");
-        Route::post("/update/{id}", [ProprieteTypeArticleController::class,'update'])->name("update");
-
-        Route::get("/delete/{id}", [ProprieteTypeArticleController::class,'delete'])->name("delete");
     });
 });
 

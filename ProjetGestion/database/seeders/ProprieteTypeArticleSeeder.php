@@ -12,6 +12,6 @@ class ProprieteTypeArticleSeeder extends Seeder
      */
     public function run(): void
     {
-        ProprieteTypeArticle::factory(10)->create();
+        ProprieteTypeArticle::factory(5)->create();
     }
 }
