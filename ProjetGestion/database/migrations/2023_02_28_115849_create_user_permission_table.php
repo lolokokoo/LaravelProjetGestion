@@ -12,8 +12,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_permission', function (Blueprint $table) {
-            $table->foreignId("user_id")->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId("permission_id")->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId("user_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId("permission_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
 
         Schema::enableForeignKeyConstraints();
@@ -27,8 +27,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('user_permission', function (Blueprint $table) {
-            $table->dropForeign("user_id")->constrained();
-            $table->dropForeign("permission_id")->constrained();
+            $table->dropForeign("user_id");
+            $table->dropForeign("permission_id");
         });
 
         Schema::dropIfExists('user_permission');
