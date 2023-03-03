@@ -80,7 +80,16 @@ class Utilisateurs extends Component
             abort(404, 'User not found.');
         }
         $user = User::find($id);
-        $this->userRoles($user); //définie tout les roles et permissions de l'utilisateur dans le tableau $rolePermission
+
+        $IdsRolesUser = $user->roles->pluck('id')->toArray(); //Ids des roles de l'user dans un tableau
+
+        $IdsPermissionsUser = $user->permissions->pluck('id')->toArray(); //Ids des permissions de l'user dans un tableau
+
+        $this->rolesPermissions["roles"] = [];
+        $this->rolesPermissions["permissions"] = [];
+
+        $this->setArrayRolesPermissions($IdsRolesUser, $IdsPermissionsUser);
+
         return view('livewire.users.edit', [
             'user' => $user,
             'rolesPermissions' => $this->rolesPermissions
@@ -135,19 +144,52 @@ class Utilisateurs extends Component
         return redirect()->route('admin.users.edit', ['id' => $id])->with('success', 'Mot de passe réinitialisé avec succes!');
     }
 
-    private function userRoles($user)
+    public function editRoles($id, Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $user = User::find($id);
+
+            $IdsRolesUser = [];
+            $IdsPermissionsUser = [];
+            //On récupére les ids des checkboxs apres soumission du form
+            foreach ($request->all() as $key => $value) {
+                if (strpos($key, 'customSwitchRole') === 0) {
+                    // Si la clé commence par 'customSwitchRole', cela correspond à un rôle
+                    $IdsRolesUser[] = intval(substr($key, strlen('customSwitchRole')));
+                } elseif (strpos($key, 'customSwitchPermission') === 0) {
+                    // Si la clé commence par 'customSwitchPermission', cela correspond à une permission
+                    $IdsPermissionsUser[] = intval(substr($key, strlen('customSwitchPermission')));
+                }
+            }
+
+            $this->setArrayRolesPermissions($IdsRolesUser, $IdsPermissionsUser);
+
+            return view('livewire.users.edit', [
+                'user' => $user,
+                'rolesPermissions' => $this->rolesPermissions
+            ]);
+        }
+        else{
+            return redirect()->route('home');
+        }
+    }
+
+    /**
+     * This function allow us to fill the array rolesPermissions
+     *
+     * @param $IdsRolesUser
+     * @param $IdsPermissionsUser
+     * @return void
+     */
+    private function setArrayRolesPermissions($IdsRolesUser, $IdsPermissionsUser):void
     {
         $toutLesNomsDeRoles = Role::all()->pluck('nom')->toArray();
         $toutLesIdsDeRoles = Role::all()->pluck('id')->toArray();
-        $IdsRolesUser = $user->roles->pluck('id')->toArray(); //Ids des roles de l'user dans un tableau
-
         $toutLesNomsDePermissions = Permission::all()->pluck('nom')->toArray();
         $toutLesIdsDePermissions = Permission::all()->pluck('id')->toArray();
-        $IdsPermissionsUser = $user->permissions->pluck('id')->toArray(); //Ids des permissions de l'user dans un tableau
 
         $this->rolesPermissions["roles"] = [];
         $this->rolesPermissions["permissions"] = [];
-
 
         foreach ($toutLesIdsDeRoles as $roleId){
             if (in_array($roleId, $IdsRolesUser)){
@@ -164,8 +206,5 @@ class Utilisateurs extends Component
                 array_push($this->rolesPermissions["permissions"], ["permission_id" => $permissionId, "permission_nom" => $toutLesNomsDePermissions[$permissionId - 1], "checked" => false]);
             }
         }
-        //dd($this->rolesPermissions);
     }
-
-
 }
