@@ -48,6 +48,9 @@
                                             <a href="{{ route('admin.typesarticles.delete', [$typesarticle->id]) }}" class="text-decoration-none">
                                                 <button class="btn btn-link"><i class="fa fa-trash-alt"></i></button>
                                             </a>
+                                            <a href="{{ route('admin.proprietetypearticle.show', [$typesarticle->id]) }}" class="text-decoration-none">
+                                                <button class="btn btn-link"><i class="fa fa-list"></i></button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
