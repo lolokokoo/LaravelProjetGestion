@@ -8,7 +8,7 @@
         <div class="col-md-6">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fa fa-user-plus fa-2x"></i> Formulaire de modification d'utilisateur</h3>
+                    <h3 class="card-title"><i class="fa fa-user-plus fa-2x"></i> Formulaire de modification du type d'article</h3>
                 </div>
                 <form action="{{ route('admin.typesarticles.update', ['id' => $typeArticle->id]) }}" method="POST">
                     @csrf

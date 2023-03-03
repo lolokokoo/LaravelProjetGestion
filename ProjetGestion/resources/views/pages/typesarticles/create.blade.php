@@ -35,8 +35,8 @@
                             <form action="{{ route('admin.typesarticles.store') }}" method="POST">
                                 @csrf
                                 <tr>
-                                    <td>
-                                        <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom">
+                                    <td class="row">
+                                        <input type="text" class="form-control w-50 @error('nom') is-invalid @enderror" name="nom">
                                         @error("nom")
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
