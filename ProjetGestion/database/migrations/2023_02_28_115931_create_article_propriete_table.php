@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('article_propriete', function (Blueprint $table) {
-            $table->foreignId("article_id")->constrained();
-            $table->foreignId("propriete_article_id")->references('id')->on('propriete_type_articles')->constrained();
+            $table->foreignId("article_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId("propriete_article_id")->references('id')->on('propriete_type_articles')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
 
         Schema::enableForeignKeyConstraints();

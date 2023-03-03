@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("nom");
             $table->boolean("estObligatoire")->default(1);
-            $table->foreignId("type_article_id")->constrained();
+            $table->foreignId("type_article_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
 
             $table->unique(["nom", "type_article_id"]);
         });

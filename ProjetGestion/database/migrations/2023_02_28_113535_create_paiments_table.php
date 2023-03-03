@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->double("montantPaye");
             $table->dateTime("datePaiement");
-            $table->foreignId("user_id")->constrained();
-            $table->foreignId("location_id")->constrained();
+            $table->foreignId("user_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId("location_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
 
         Schema::enableForeignKeyConstraints();

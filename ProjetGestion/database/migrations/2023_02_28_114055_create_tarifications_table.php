@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('tarifications', function (Blueprint $table) {
             $table->id();
             $table->double("prix");
-            $table->foreignId("duree_location_id")->constrained();
-            $table->foreignId("article_id")->constrained();
+            $table->foreignId("duree_location_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId("article_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
 
             $table->unique(["duree_location_id", "article_id"]);

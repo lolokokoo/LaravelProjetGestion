@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->dateTime("dateDebut");
             $table->dateTime("dateFin");
-            $table->foreignId("client_id")->constrained();
-            $table->foreignId("user_id")->constrained();
-            $table->foreignId("statut_location_id")->constrained();
+            $table->foreignId("client_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId("user_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId("statut_location_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
 
         Schema::enableForeignKeyConstraints();
