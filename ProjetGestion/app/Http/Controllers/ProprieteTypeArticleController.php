@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProprieteArticle;
-use Illuminate\Http\Request;
 
-class ProprieteController extends Controller
+use App\Models\ProprieteTypeArticle;
+use App\Models\TypeArticle;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+
+class ProprieteTypeArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,10 +37,16 @@ class ProprieteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        $proprietes = ProprieteArticle::find($id);
 
+        Paginator::useBootstrap();
+        $proprietesTypeArticle = ProprieteTypeArticle::where("type_article_id", $id)->paginate(5);
+        $type_article = TypeArticle::find($id);
+        return view('pages.proprietetypearticle.show', [
+            "proprietesTypeArticles" => $proprietesTypeArticle,
+            "type_article" => $type_article
+        ]);
     }
 
     /**
