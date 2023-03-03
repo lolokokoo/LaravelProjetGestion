@@ -56,7 +56,9 @@
                     </div>
                     <div class="card-footer ">
                         <div class="float-right pagination">
-
+                            <div class="float-right pagination">
+                                {{ $typesarticles->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

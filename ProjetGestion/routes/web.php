@@ -52,10 +52,14 @@ Route::group([
         "prefix" => "typesarticles",
         "as" => "typesarticles."
     ], function (){
-        Route::get("/index", [TypeArticleComp::class,'index'])->name("index");
+        Route::get("/index", [TypeArticleComp::class,'render'])->name("index");
+
         Route::get("/create", [TypeArticleComp::class,'create'])->name("create");
-        Route::get("/edit/{id}", [TypeArticleComp::class,'edit'])->name("edit");
         Route::post("/store", [TypeArticleComp::class,'store'])->name("store");
+
+        Route::get("/edit/{id}", [TypeArticleComp::class,'edit'])->name("edit");
+        Route::post("/update/{id}", [TypeArticleComp::class,'update'])->name("update");
+
         Route::get("/delete/{id}", [TypeArticleComp::class,'delete'])->name("delete");
 
     });
