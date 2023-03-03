@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TypeArticleController;
 use App\Http\Controllers\UserController;
-use App\Http\Livewire\TypeArticleComp;
-use App\Http\Livewire\Utilisateurs;
+use App\Http\Controllers\UtilisateursController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,33 +33,33 @@ Route::group([
         "prefix" => "users",
         "as" => "users."
     ], function (){
-        Route::get("/index", [Utilisateurs::class,'index'])->name("index");
+        Route::get("/index", [UtilisateursController::class,'index'])->name("index");
 
-        Route::get('/create', [Utilisateurs::class, 'create'])->name('create');
-        Route::post('/store', [Utilisateurs::class, 'store'])->name('store');
+        Route::get('/create', [UtilisateursController::class, 'create'])->name('create');
+        Route::post('/store', [UtilisateursController::class, 'store'])->name('store');
 
-        Route::get('/edit/{id}', [Utilisateurs::class, 'edit'])->name('edit');
-        Route::post('/update/{id}', [Utilisateurs::class, 'update'])->name('update');
+        Route::get('/edit/{id}', [UtilisateursController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [UtilisateursController::class, 'update'])->name('update');
 
-        Route::get('/delete/{id}', [Utilisateurs::class, 'delete'])->where(['id' => '[0-9]+'])->name('delete');
+        Route::get('/delete/{id}', [UtilisateursController::class, 'delete'])->where(['id' => '[0-9]+'])->name('delete');
 
-        Route::get('/editPassword/{id}',[Utilisateurs::class, 'editPassword'])->where(['id' => '[0-9]+'])->name('editPassword');
-        Route::post('/editRoles/{id}', [Utilisateurs::class, 'editRoles'])->name('editRoles');
+        Route::get('/editPassword/{id}',[UtilisateursController::class, 'editPassword'])->where(['id' => '[0-9]+'])->name('editPassword');
+        Route::post('/editRoles/{id}', [UtilisateursController::class, 'editRoles'])->name('editRoles');
     });
 
     Route::group([
         "prefix" => "typesarticles",
         "as" => "typesarticles."
     ], function (){
-        Route::get("/index", [TypeArticleComp::class,'render'])->name("index");
+        Route::get("/index", [TypeArticleController::class,'index'])->name("index");
 
-        Route::get("/create", [TypeArticleComp::class,'create'])->name("create");
-        Route::post("/store", [TypeArticleComp::class,'store'])->name("store");
+        Route::get("/create", [TypeArticleController::class,'create'])->name("create");
+        Route::post("/store", [TypeArticleController::class,'store'])->name("store");
 
-        Route::get("/edit/{id}", [TypeArticleComp::class,'edit'])->name("edit");
-        Route::post("/update/{id}", [TypeArticleComp::class,'update'])->name("update");
+        Route::get("/edit/{id}", [TypeArticleController::class,'edit'])->name("edit");
+        Route::post("/update/{id}", [TypeArticleController::class,'update'])->name("update");
 
-        Route::get("/delete/{id}", [TypeArticleComp::class,'delete'])->name("delete");
+        Route::get("/delete/{id}", [TypeArticleController::class,'delete'])->name("delete");
 
     });
 });

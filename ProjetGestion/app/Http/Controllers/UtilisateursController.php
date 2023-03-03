@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Controllers;
 
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +14,7 @@ use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Utilisateurs extends Component
+class UtilisateursController extends Component
 {
     use  WithPagination;
 
@@ -39,18 +39,18 @@ class Utilisateurs extends Component
 
     public function index()
     {
-
+        Carbon::setLocale("fr");
         Paginator::useBootstrap();
         $users = User::paginate(10);
 
-        return view('livewire.users.index', [
+        return view('pages.users.index', [
             "users" => $users,
         ]);
     }
 
     public function create()
     {
-        return view('livewire.users.create');
+        return view('pages.users.create');
     }
 
     public function store(Request $request)
@@ -89,7 +89,7 @@ class Utilisateurs extends Component
 
         $this->setArrayRolesPermissions($IdsRolesUser, $IdsPermissionsUser);
 
-        return view('livewire.users.edit', [
+        return view('pages.users.edit', [
             'user' => $user,
             'rolesPermissions' => $this->rolesPermissions
         ]);
@@ -142,7 +142,7 @@ class Utilisateurs extends Component
         $user = User::find($id);
         $user->password = (Hash::make($this->defaultPassword));
         $user->save();
-        return redirect()->route('admin.users.edit', ['id' => $id])->with('success', 'Mot de passe réinitialisé avec succes!');
+        return redirect()->route('admin.users.edit', ['id' => $id]);
     }
 
     public function editRoles($id, Request $request)
@@ -178,14 +178,13 @@ class Utilisateurs extends Component
                 }
             }
 
-            return view('livewire.users.edit', [
+            return view('pages.users.edit', [
                 'user' => $user,
                 'rolesPermissions' => $this->rolesPermissions,
-                'success' => 'Roles et permissions enregistrés'
             ]);
         }
         else{
-            return redirect()->route('home');
+            return redirect()->route('admin.users.edit', ['id' => $id])->with('success', 'Roles et permissions enregistrées!');
         }
     }
 

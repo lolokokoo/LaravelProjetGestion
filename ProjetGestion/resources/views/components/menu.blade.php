@@ -46,7 +46,7 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item ">
-                    <a href="{{ route('admin.users.index') }}" class="nav-link {{ setMenuActive('admin.users.index') }}">
+                    <a href="{{ route('admin.users.index') }}" class="nav-link {{ setMenuClass('admin.users.', 'active') }}">
                         <i class=" nav-icon fas fa-users-cog"></i>
                         <p>Utilisateurs</p>
                     </a>
@@ -71,7 +71,7 @@
             <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a href="{{ route('admin.typesarticles.index') }}"
-                       class="nav-link {{ setMenuActive('admin.typesarticles.index') }}">
+                       class="nav-link {{ setMenuClass('admin.typesarticles.', 'active') }}">
                         <i class="nav-icon far fa-circle"></i>
                         <p>Type d'articles</p>
                     </a>

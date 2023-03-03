@@ -1,12 +1,10 @@
 @extends('layouts.master')
 
 @section("contenu")
-    @if($success)
-        <div class="alert alert-success">
-            {{ $success }}
-        </div>
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-    <div class="row p-4 pt-5">
+    <div class="row p-2">
         <div class="col-md-6">
             <div class="card card-primary">
                 <div class="card-header">
@@ -91,39 +89,32 @@
                     </div>
                 </form>
             </div>
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-lock fa"></i> Réinitialisation de mot de passe</h3>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>
+                            <a href="{{ route('admin.users.editPassword', ['id' => $user->id]) }}" class="btn btn-link text-decoration-none">
+                                Réinitialiser le mot de passe par défaut
+                            </a>
+                            @if(session('success-password'))
+                                <div class="alert alert-success">{{ session('success-password') }}</div>
+                            @endif
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title"><i class="fas fa-lock fa-2x"></i> Réinitialisation de mot de passe</h3>
-                        </div>
-                        <div class="card-body">
-                            <ul>
-                                <li>
-                                    <a href="{{ route('admin.users.editPassword', ['id' => $user->id]) }}" class="btn btn-link text-decoration-none">
-                                        Réinitialiser le mot de passe par défaut
-                                    </a>
-
-                                    @if(session('success'))
-                                        <div class="alert alert-success">{{ session('success') }}</div>
-                                    @endif
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="col-md-12 mt-4">
                     <form method="POST" action="{{ route('admin.users.editRoles', ['id' => $user->id]) }}">
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title"><i class="fas fa-fingerprint fa-2x"></i> Roles & permissions</h3>
-                                <button type="submit" class="btn btn-danger float-right mt-1">Enregistrer les modifications</button>
                             </div>
                             @csrf
                             @foreach($rolesPermissions["roles"] as $role)
@@ -147,8 +138,7 @@
                             <div class="p-3">
                                 <table class="table table-bordered">
                                     <thead>
-                                        <th>Permissions</th>
-                                        <th></th>
+                                        <th colspan="2">Permissions</th>
                                     </thead>
                                     <tbody >
                                     @foreach($rolesPermissions["permissions"] as $permission)
@@ -161,13 +151,14 @@
                                                         checked
                                                     @endif
                                                     >
-                                                    <label class="custom-control-label" for="customSwitchPermission{{ $permission["permission_id"] }}"></label>
+                                                    <label class="custom-control-label float-right" for="customSwitchPermission{{ $permission["permission_id"] }}"></label>
                                                 </div>
                                             </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <button type="submit" class="btn btn-danger float-right mt-4">Enregistrer les modifications</button>
                             </div>
                         </div>
                     </form>

@@ -2,7 +2,7 @@
 
 @section("contenu")
     <div>
-        <h1>Page utilisateurs</h1>
+        <h1>Page des types d'article</h1>
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
@@ -39,7 +39,7 @@
                                             {{ $typesarticle->nom }}
                                         </td>
                                         <td>
-                                            {{ $typesarticle->created_at }}
+                                            {{ $typesarticle->created_at->diffForHumans() }}
                                         </td>
                                         <td class="text-center">
                                             <a href="{{ route('admin.typesarticles.edit', [$typesarticle->id]) }}" class="text-decoration-none">

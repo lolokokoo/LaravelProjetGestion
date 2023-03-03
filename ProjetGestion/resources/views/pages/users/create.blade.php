@@ -7,7 +7,9 @@
                 <div class="card-header">
                     <h3 class="card-title"><i class="fa fa-user-plus fa-2x"></i> Formulaire de crétion d'un nouvel utilisateur</h3>
                 </div>
-
+                @if(session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
                 <form action="{{ route('admin.users.store') }}" method="POST">
                     @csrf
                     <div class="card-body">

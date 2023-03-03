@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Controllers;
 
 use App\Models\TypeArticle;
 use Carbon\Carbon;
@@ -9,7 +9,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
-class TypeArticleComp extends Component
+class TypeArticleController extends Component
 {
     private $messagesError = [
         'nom.required' => 'Le champ nom est obligatoire.',
@@ -18,21 +18,15 @@ class TypeArticleComp extends Component
 
     public $search = "";
 
-    public function render()
+    public function index()
     {
-
         Carbon::setLocale("fr");
+        Paginator::useBootstrap();
+        $typesarticles = TypeArticle::latest()->paginate(5);
 
-        $searchCriteria = "%".$this->search."%";
-
-        $data = [
-
-        ];
-        return view('livewire.typesarticles.index', [
-            "typesarticles" => TypeArticle::where("nom", "like", $searchCriteria)->latest()->paginate(5)
-        ])
-            ->extends("layouts.master")
-            ->section("contenu");
+        return view('pages.typesarticles.index',[
+            "typesarticles" => $typesarticles
+        ]);
     }
     public function updatedSearch()
     {
@@ -41,7 +35,13 @@ class TypeArticleComp extends Component
 
     public function create()
     {
-        return view('livewire.typesarticles.create');
+        Carbon::setLocale("fr");
+        Paginator::useBootstrap();
+        $typesarticles = TypeArticle::latest()->paginate(5);
+
+        return view('pages.typesarticles.create',[
+            "typesarticles" => $typesarticles
+        ]);
     }
 
     public function store(Request $request)
@@ -62,7 +62,7 @@ class TypeArticleComp extends Component
         }
         $typeArticle = TypeArticle::find($id);
 
-        return view('livewire.typesarticles.edit', [
+        return view('pages.typesarticles.edit', [
             'typeArticle' => $typeArticle
         ]);
     }
