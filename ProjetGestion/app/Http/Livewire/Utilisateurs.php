@@ -109,7 +109,9 @@ class Utilisateurs extends Component
             'numeroPieceIdentite' => ['required', Rule::unique("users", "pieceIdentite")->ignore($id)],
             'password' => 'required'
         ], $this->messagesError);
+
         $validated["password"] = Hash::make($validated["password"]);
+
         if (!User::find($id)) {
             abort(404, 'User not found.');
         }
@@ -169,6 +171,12 @@ class Utilisateurs extends Component
             foreach ($this->rolesPermissions["roles"] as $role){
                 if ($role["checked"]){
                     $user->roles()->attach($role['role_id']);
+                }
+            }
+            DB::table("user_permission")->where("user_id", $user->id)->delete();
+            foreach ($this->rolesPermissions["permissions"] as $permission){
+                if ($permission["checked"]){
+                    $user->permissions()->attach($permission['permission_id']);
                 }
             }
 
