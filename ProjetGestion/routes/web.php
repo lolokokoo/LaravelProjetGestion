@@ -49,10 +49,14 @@ Route::group([
     });
 
     Route::group([
-        "prefix" => "articles",
-        "as" => "articles."
+        "prefix" => "typesarticles",
+        "as" => "typesarticles."
     ], function (){
-        Route::get("/typesarticles", [TypeArticleComp::class,'typesarticles'])->name("typesarticles");
+        Route::get("/index", [TypeArticleComp::class,'index'])->name("index");
+        Route::get("/create", [TypeArticleComp::class,'create'])->name("create");
+        Route::get("/edit/{id}", [TypeArticleComp::class,'edit'])->name("edit");
+        Route::post("/store", [TypeArticleComp::class,'store'])->name("store");
+        Route::get("/delete/{id}", [TypeArticleComp::class,'delete'])->name("delete");
 
     });
 });

@@ -24,7 +24,7 @@
                     </div>
                 </div>
 
-                <div class="card-body table-responsive p-0 table-striped" style="height: 300px;">
+                <div class="card-body table-responsive p-0 table-striped" style="max-height: 300px;">
                     <table class="table table-head-fixed text-nowrap">
                         <thead>
                         <tr>

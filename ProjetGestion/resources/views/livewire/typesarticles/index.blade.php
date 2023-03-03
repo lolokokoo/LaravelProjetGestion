@@ -12,7 +12,7 @@
                     <div class="card-header bg-primary d-flex align-items-center">
                         <h3 class="card-title flex-grow-1"><i class="fa fa-list fa-2x"></i> Liste des types d'articles</h3>
                         <div class="card-tools d-flex align-items-center">
-                            <a href="" class="btn btn-link text-white mr-4 d-block text-decoration-none"><i class="fas fa-user-plus"></i> Nouveau type d'article</a>
+                            <a href=" {{ route('admin.typesarticles.create') }}" class="btn btn-link text-white mr-4 d-block text-decoration-none"><i class="fas fa-user-plus"></i> Nouveau type d'article</a>
                             <div class="input-group input-group-md" style="width: 250px;">
                                 <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
                                 <div class="input-group-append">
@@ -23,8 +23,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="card-body table-responsive p-0 table-striped" style="height: 300px;">
+                    <div class="card-body table-responsive p-0 table-striped" style="max-height: 300px;">
                         <table class="table table-head-fixed text-nowrap">
                             <thead>
                             <tr>
@@ -34,7 +33,24 @@
                             </tr>
                             </thead>
                             <tbody>
-
+                                @foreach($typesarticles as $typesarticle)
+                                    <tr>
+                                        <td>
+                                            {{ $typesarticle->nom }}
+                                        </td>
+                                        <td>
+                                            {{ $typesarticle->created_at }}
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ route('admin.typesarticles.edit', [$typesarticle->id]) }}" class="text-decoration-none">
+                                                <button class="btn btn-link"><i class="far fa-edit"></i></button>
+                                            </a>
+                                            <a href="{{ route('admin.typesarticles.delete', [$typesarticle->id]) }}" class="text-decoration-none">
+                                                <button class="btn btn-link"><i class="fa fa-trash-alt"></i></button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

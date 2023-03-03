@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,11 +15,29 @@ class TypeArticleTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table("type_articles")->insert([
-            ["nom" => "Voiture"],
-            ["nom" => "Immobilier"],
-            ["nom" => "Appareils Electroniques"],
-            ["nom" => "Salle"],
+        $now = Carbon::now();
+
+        DB::table('type_articles')->insert([
+            [
+                'nom' => 'Voiture',
+                'created_at' => $now,
+                'updated_at' => $now
+            ],
+            [
+                'nom' => 'Immobilier',
+                'created_at' => $now,
+                'updated_at' => $now
+            ],
+            [
+                'nom' => 'Appareils Electroniques',
+                'created_at' => $now,
+                'updated_at' => $now
+            ],
+            [
+                'nom' => 'Salle',
+                'created_at' => $now,
+                'updated_at' => $now
+            ],
         ]);
     }
 }

@@ -10,7 +10,11 @@ class TypeArticle extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    protected $fillable = [
+        'nom',
+    ];
+
+    public $timestamps = true;
 
     public function articles()
     {

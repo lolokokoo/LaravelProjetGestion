@@ -37,8 +37,6 @@ class Utilisateurs extends Component
 
     public $rolesPermissions = [];
 
-
-
     public function index()
     {
 
