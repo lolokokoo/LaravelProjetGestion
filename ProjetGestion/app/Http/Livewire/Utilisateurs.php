@@ -182,7 +182,8 @@ class Utilisateurs extends Component
 
             return view('livewire.users.edit', [
                 'user' => $user,
-                'rolesPermissions' => $this->rolesPermissions
+                'rolesPermissions' => $this->rolesPermissions,
+                'success' => 'Roles et permissions enregistrés'
             ]);
         }
         else{

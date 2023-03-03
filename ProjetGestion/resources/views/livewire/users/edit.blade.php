@@ -1,6 +1,11 @@
 @extends('layouts.master')
 
 @section("contenu")
+    @if($success)
+        <div class="alert alert-success">
+            {{ $success }}
+        </div>
+    @endif
     <div class="row p-4 pt-5">
         <div class="col-md-6">
             <div class="card card-primary">
