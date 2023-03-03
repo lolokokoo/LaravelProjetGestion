@@ -60,8 +60,8 @@
             </ul>
         </li>
 
-        <li class="nav-item">
-            <a href="#" class="nav-link">
+        <li class="nav-item {{ setMenuClass('admin.articles.', 'menu-open') }}">
+            <a href="#" class="nav-link {{ setMenuClass('admin.articles.', 'active') }}">
                 <i class="nav-icon fas fa-cogs"></i>
                 <p>
                     Gestion articles
@@ -70,8 +70,8 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href=""
-                       class="nav-link">
+                    <a href="{{ route('admin.articles.typesarticles') }}"
+                       class="nav-link {{ setMenuActive('admin.articles.typesarticles') }}">
                         <i class="nav-icon far fa-circle"></i>
                         <p>Type d'articles</p>
                     </a>

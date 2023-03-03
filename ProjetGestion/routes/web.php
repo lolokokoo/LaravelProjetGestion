@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\TypeArticleComp;
 use App\Http\Livewire\Utilisateurs;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,14 @@ Route::group([
 
         Route::get('/editPassword/{id}',[Utilisateurs::class, 'editPassword'])->where(['id' => '[0-9]+'])->name('editPassword');
         Route::post('/editRoles/{id}', [Utilisateurs::class, 'editRoles'])->name('editRoles');
+    });
+
+    Route::group([
+        "prefix" => "articles",
+        "as" => "articles."
+    ], function (){
+        Route::get("/typesarticles", [TypeArticleComp::class,'typesarticles'])->name("typesarticles");
+
     });
 });
 
