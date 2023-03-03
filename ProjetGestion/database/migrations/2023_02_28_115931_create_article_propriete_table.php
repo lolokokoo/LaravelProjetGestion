@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('article_propriete', function (Blueprint $table) {
             $table->foreignId("article_id")->constrained();
-            $table->foreignId("propriete_article_id")->constrained();
-            $table->timestamps();
+            $table->foreignId("propriete_article_id")->references('id')->on('propriete_type_articles')->constrained();
         });
 
         Schema::enableForeignKeyConstraints();

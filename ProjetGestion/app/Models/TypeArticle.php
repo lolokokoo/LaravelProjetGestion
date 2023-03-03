@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class TypeArticle extends Model
 {
@@ -21,7 +20,8 @@ class TypeArticle extends Model
         return $this->hasMany(Article::class);
     }
 
-    public function proprietes(){
-        return $this->hasMany(ProprieteArticle::class);
+    public function proprietes()
+    {
+        return $this->hasMany(ProprieteTypeArticle::class);
     }
 }

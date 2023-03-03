@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             TypeArticleTableSeeder::class,
+            ProprieteTypeArticleSeeder::class,
             ArticleTableSeeder::class, //Must be created after Type Article
             UserSeeder::class,
             DureeLocationTableSeeder::class,

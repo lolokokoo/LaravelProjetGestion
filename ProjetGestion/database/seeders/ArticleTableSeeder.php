@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\ProprieteTypeArticle;
 use Illuminate\Database\Seeder;
 
 class ArticleTableSeeder extends Seeder
@@ -14,5 +14,12 @@ class ArticleTableSeeder extends Seeder
     public function run(): void
     {
         Article::factory(10)->create();
+        $proprieteTypeArticle = ProprieteTypeArticle::all();
+
+        $articles = Article::all();
+        foreach ($articles as $article){
+            $article->proprietes()->attach(rand(1, count($proprieteTypeArticle)));
+            $article->proprietes()->attach(rand(1, count($proprieteTypeArticle)));
+        }
     }
 }
