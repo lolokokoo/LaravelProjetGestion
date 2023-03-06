@@ -10,4 +10,9 @@ class DureeLocation extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    protected $fillable = [
+        'libelle',
+        'valeurEnHeure'
+    ];
 }
