@@ -32,7 +32,7 @@ class ProprieteTypeArticleController extends Controller
         Paginator::useBootstrap();
         $proprietesTypeArticle = ProprieteTypeArticle::where("type_article_id", $type_article_id)
             ->paginate(5);
-        
+
         $type_article = TypeArticle::find($type_article_id);
 
         return view('pages.proprietetypearticle.create', [
@@ -48,9 +48,11 @@ class ProprieteTypeArticleController extends Controller
     {
         $validated = $request->validate([
             'nom' => 'required',
-            'estObligatoire',
             'type_article_id' => 'required'
         ], $this->messagesError);
+
+        $estObligatoire = $request->has('estObligatoire') ? true : false;
+        $validated['estObligatoire'] = $estObligatoire;
 
         ProprieteTypeArticle::create($validated);
 
@@ -58,6 +60,7 @@ class ProprieteTypeArticleController extends Controller
             "type_article_id" => $validated['type_article_id']
         ])->with('success', 'Propriété crée avec succès!');
     }
+
 
     /**
      * Display the specified resource.
