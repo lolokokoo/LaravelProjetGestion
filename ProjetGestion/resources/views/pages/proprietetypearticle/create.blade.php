@@ -67,7 +67,7 @@
                                         <i class="fas {{ $proprietesTypeArticle->estObligatoire ? "fa-check text-success" : "fa-times text-danger"}}"></i>
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.proprietetypearticle.edit', [$proprietesTypeArticle->id]) }}" class="text-decoration-none">
+                                        <a href="{{ route('admin.proprietetypearticle.edit', [$type_article->id, $proprietesTypeArticle->id]) }}" class="text-decoration-none">
                                             <button class="btn btn-link"><i class="far fa-edit"></i></button>
                                         </a>
                                         <a href="{{ route('admin.proprietetypearticle.delete', [$proprietesTypeArticle->id, $proprietesTypeArticle->id]) }}" class="text-decoration-none">
@@ -76,7 +76,6 @@
                                     </td>
                                 </tr>
                             @endforeach
-
                             </tbody>
                         </table>
                     </div>

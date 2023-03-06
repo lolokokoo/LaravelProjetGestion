@@ -101,7 +101,6 @@ class UtilisateursController extends Component
             'nom' => 'required',
             'prenom' => 'required',
             'email' => ['required', 'email', Rule::unique("users", "email")->ignore($id)],
-            'telephone1' => ['required', Rule::unique("users", "telephone1")->ignore($id)],
             'pieceIdentite' => ['required'],
             'sexe' => 'required',
             'numeroPieceIdentite' => ['required', Rule::unique("users", "pieceIdentite")->ignore($id)],

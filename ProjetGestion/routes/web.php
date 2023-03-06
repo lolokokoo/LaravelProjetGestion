@@ -74,10 +74,10 @@ Route::group([
         Route::post("/store", [ProprieteTypeArticleController::class,'store'])->name("store");
 
 
-        Route::get("/edit/{id}", [ProprieteTypeArticleController::class,'edit'])->name("edit");
+        Route::get("/edit/{type_article_id}/{id}", [ProprieteTypeArticleController::class,'edit'])->name("edit");
         Route::post("/update/{id}", [ProprieteTypeArticleController::class,'update'])->name("update");
 
-        Route::get("/delete//{type_article_id}/{id}", [ProprieteTypeArticleController::class,'delete'])->name("delete");
+        Route::get("/delete/{type_article_id}/{id}", [ProprieteTypeArticleController::class,'delete'])->name("delete");
     });
 });
 

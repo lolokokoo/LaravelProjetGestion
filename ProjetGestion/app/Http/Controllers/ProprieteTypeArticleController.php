@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\ProprieteArticle;
 use App\Models\ProprieteTypeArticle;
 use App\Models\TypeArticle;
 use Illuminate\Http\Request;
@@ -29,7 +30,9 @@ class ProprieteTypeArticleController extends Controller
     public function create($type_article_id)
     {
         Paginator::useBootstrap();
-        $proprietesTypeArticle = ProprieteTypeArticle::where("type_article_id", $type_article_id)->paginate(5);
+        $proprietesTypeArticle = ProprieteTypeArticle::where("type_article_id", $type_article_id)
+            ->paginate(5);
+        
         $type_article = TypeArticle::find($type_article_id);
 
         return view('pages.proprietetypearticle.create', [
@@ -63,7 +66,9 @@ class ProprieteTypeArticleController extends Controller
     {
 
         Paginator::useBootstrap();
-        $proprietesTypeArticle = ProprieteTypeArticle::where("type_article_id", $type_article_id)->paginate(5);
+        $proprietesTypeArticle = ProprieteTypeArticle::where("type_article_id", $type_article_id)
+            ->paginate(5);
+
         $type_article = TypeArticle::find($type_article_id);
         return view('pages.proprietetypearticle.show', [
             "proprietesTypeArticles" => $proprietesTypeArticle,
@@ -74,9 +79,25 @@ class ProprieteTypeArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($type_article_id, $id)
     {
-        return view('pages.proprietetypearticle.edit');
+        Paginator::useBootstrap();
+
+        if (!ProprieteTypeArticle::find($id)) {
+            abort(404, 'Property Type Article not found.');
+        }
+        $propriete_type_article = ProprieteTypeArticle::find($id);
+
+        $autres_proprietes = ProprieteTypeArticle::where("type_article_id", $type_article_id)
+            ->whereNotIn('id', [$id])
+            ->paginate(5);
+
+        $type_article = TypeArticle::find($type_article_id);
+        return view('pages.proprietetypearticle.edit', [
+            'propriete_type_article' => $propriete_type_article,
+            'autres_proprietes' => $autres_proprietes,
+            'type_article' => $type_article
+        ]);
     }
 
     /**
