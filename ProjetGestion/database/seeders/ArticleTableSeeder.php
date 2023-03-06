@@ -13,7 +13,7 @@ class ArticleTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Article::factory(10)->create();
+        Article::factory(25)->create();
         $proprieteTypeArticle = ProprieteTypeArticle::all();
 
         $articles = Article::all();
