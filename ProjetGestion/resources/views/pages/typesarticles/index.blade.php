@@ -2,7 +2,6 @@
 
 @section("contenu")
     <div>
-        <h1>Page des types d'article</h1>
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif

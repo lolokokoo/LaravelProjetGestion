@@ -8,12 +8,14 @@ use App\Models\ProprieteTypeArticle;
 use App\Models\TypeArticle;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Validation\Rule;
 
 class ProprieteTypeArticleController extends Controller
 {
 
     private $messagesError =  [
         'nom.required' => 'Le champ nom est obligatoire.',
+        'nom.unique' => 'Ce nom est déjà utilisé.',
     ];
 
     /**
@@ -47,7 +49,7 @@ class ProprieteTypeArticleController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nom' => 'required',
+            'nom' => ['required', Rule::unique("propriete_type_articles", "nom")],
             'type_article_id' => 'required'
         ], $this->messagesError);
 
@@ -106,9 +108,22 @@ class ProprieteTypeArticleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'nom' => ['required',Rule::unique("propriete_type_articles", "nom")->ignore($id)],
+            'type_article_id' => 'required'
+        ], $this->messagesError);
+
+        if (!ProprieteTypeArticle::find($id)) {
+            abort(404, 'Propriety Type Article not found.');
+        }
+        $estObligatoire = $request->has('estObligatoire') ? true : false;
+        $validated['estObligatoire'] = $estObligatoire;
+        ProprieteTypeArticle::where('id', $id)->update($validated);
+        return redirect()->route('admin.proprietetypearticle.show', [
+            "type_article_id" => $validated['type_article_id']
+        ])->with('success', 'Propriété éditée avec succès!');
     }
 
     /**

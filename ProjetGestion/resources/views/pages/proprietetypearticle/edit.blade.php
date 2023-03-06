@@ -34,7 +34,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <form action="{{ route('admin.proprietetypearticle.update', [$type_article->id, $propriete_type_article->id]) }}" method="POST">
+                            <form action="{{ route('admin.proprietetypearticle.update', [$propriete_type_article->id]) }}" method="POST">
                                 @csrf
                                 <tr>
                                     <td class="row">

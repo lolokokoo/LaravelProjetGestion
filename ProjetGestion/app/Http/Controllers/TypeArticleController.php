@@ -70,7 +70,7 @@ class TypeArticleController extends Component
     public function update($id, Request $request)
     {
         $validated = $request->validate([
-            'nom' => ['required',Rule::unique("users", "email")->ignore($id)],
+            'nom' => ['required',Rule::unique("type_articles", "nom")->ignore($id)],
         ], $this->messagesError);
 
         if (!TypeArticle::find($id)) {
