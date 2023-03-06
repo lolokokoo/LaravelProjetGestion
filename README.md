@@ -1,3 +1,3 @@
 # LaravelProjetGestion
 
-Approfondir Laravel => Playlist youtube "Laravel 8 & Livewire [projet réel de A-Z] :"
+Approfondir Laravel => (basé sur un exemple de base de donnée)
