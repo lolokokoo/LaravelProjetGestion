@@ -9,7 +9,7 @@
             <div class="col-8">
                 <div class="card">
                     <div class="card-header bg-primary d-flex align-items-center">
-                        <h3 class="card-title flex-grow-1"><i class="fa fa-list fa-2x"></i> Liste des propriétés du type : {{ $type_article->nom }}</h3>
+                        <h3 class="card-title flex-grow-1"><i class="fa fa-list fa-2x"></i> Ajout d'une propriete au type : {{ $type_article->nom }}</h3>
                         <a href="{{ route('admin.proprietetypearticle.create', [$type_article->id]) }}" class="text-decoration-none text-center text-white">
                             <button class="btn btn-succes"><i class="fa fa-plus"></i> Nouvelle propriété</button>
                         </a>
@@ -34,15 +34,32 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if(!count($proprietesTypeArticles))
+                            <form action="{{ route('admin.proprietetypearticle.store', [$type_article->id]) }}" method="POST">
+                                @csrf
                                 <tr>
-                                    <td>Pas encore de propriéte</td>
-                                    <td class="text-center">
+                                    <td class="row">
+                                        <input type="text" class="form-control w-50 @error('nom') is-invalid @enderror" name="nom">
+                                        @error("nom")
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </td>
                                     <td class="text-center">
+                                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success" >
+                                            <input type="checkbox" class="custom-control-input" name="estObligatoire" id="estObligatoire">                                           >
+                                            <label class="custom-control-label" for="estObligatoire"></label>
+                                        </div>
+                                    </td>
+                                    <div>
+                                        <input class="d-none" value="{{ $type_article->id }}" name="type_article_id" id="type_article_id">
+                                        <label class="custom-control-label" for="type_article_id"></label>
+                                    </div>
+
+                                    <td class="text-center">
+                                        <button type="submit" class="btn btn-success">Enregistrer</button>
+                                        <a href="{{ route('admin.proprietetypearticle.show', [$type_article->id]) }}"><button type="button"  class="btn btn-danger">Annuler</button></a>
                                     </td>
                                 </tr>
-                            @endif
+                            </form>
                             @foreach($proprietesTypeArticles as $proprietesTypeArticle)
                                 <tr>
                                     <td>{{ $proprietesTypeArticle->nom }}</td>
@@ -53,7 +70,7 @@
                                         <a href="{{ route('admin.proprietetypearticle.edit', [$proprietesTypeArticle->id]) }}" class="text-decoration-none">
                                             <button class="btn btn-link"><i class="far fa-edit"></i></button>
                                         </a>
-                                        <a href="{{ route('admin.proprietetypearticle.delete', [$type_article->id, $proprietesTypeArticle->id]) }}" class="text-decoration-none">
+                                        <a href="{{ route('admin.proprietetypearticle.delete', [$proprietesTypeArticle->id, $proprietesTypeArticle->id]) }}" class="text-decoration-none">
                                             <button class="btn btn-link"><i class="fa fa-trash-alt"></i></button>
                                         </a>
                                     </td>

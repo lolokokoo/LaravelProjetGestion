@@ -9,9 +9,9 @@ class ProprieteArticle extends Model
 {
     use HasFactory;
 
-    public function typeArticle()
+    public function proprieteTypeArticle()
     {
-        return $this->belongsTo(TypeArticle::class, "type_article_id", "id");
+        return $this->belongsTo(ProprieteTypeArticle::class, "type_article_id", "id");
     }
 
     public function articles()//Relation ManyToMany

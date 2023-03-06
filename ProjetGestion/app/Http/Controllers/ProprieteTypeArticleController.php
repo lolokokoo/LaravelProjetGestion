@@ -10,20 +10,32 @@ use Illuminate\Pagination\Paginator;
 
 class ProprieteTypeArticleController extends Controller
 {
+
+    private $messagesError =  [
+        'nom.required' => 'Le champ nom est obligatoire.',
+    ];
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($type_article_id)
     {
-        //
+        Paginator::useBootstrap();
+        $proprietesTypeArticle = ProprieteTypeArticle::where("type_article_id", $type_article_id)->paginate(5);
+        $type_article = TypeArticle::find($type_article_id);
+
+        return view('pages.proprietetypearticle.create', [
+            "proprietesTypeArticles" => $proprietesTypeArticle,
+            "type_article" => $type_article
+        ]);
     }
 
     /**
@@ -31,18 +43,28 @@ class ProprieteTypeArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nom' => 'required',
+            'estObligatoire',
+            'type_article_id' => 'required'
+        ], $this->messagesError);
+
+        ProprieteTypeArticle::create($validated);
+
+        return redirect()->route('admin.proprietetypearticle.show', [
+            "type_article_id" => $validated['type_article_id']
+        ])->with('success', 'Propriété crée avec succès!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($type_article_id)
     {
 
         Paginator::useBootstrap();
-        $proprietesTypeArticle = ProprieteTypeArticle::where("type_article_id", $id)->paginate(5);
-        $type_article = TypeArticle::find($id);
+        $proprietesTypeArticle = ProprieteTypeArticle::where("type_article_id", $type_article_id)->paginate(5);
+        $type_article = TypeArticle::find($type_article_id);
         return view('pages.proprietetypearticle.show', [
             "proprietesTypeArticles" => $proprietesTypeArticle,
             "type_article" => $type_article
@@ -54,7 +76,7 @@ class ProprieteTypeArticleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('pages.proprietetypearticle.edit');
     }
 
     /**
@@ -68,8 +90,14 @@ class ProprieteTypeArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function delete(string $id)
+    public function delete($type_article_id, $id)
     {
-        //
+        if (!ProprieteTypeArticle::find($id)) {
+            abort(404, 'User not found.');
+        }
+        ProprieteTypeArticle::destroy($id);
+        return redirect()->route('admin.proprietetypearticle.show', [
+            "type_article_id" => $type_article_id
+        ])->with('success', 'Propriété supprimée avec succès!');
     }
 }

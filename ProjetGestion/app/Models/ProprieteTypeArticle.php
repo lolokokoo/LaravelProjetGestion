@@ -11,6 +11,12 @@ class ProprieteTypeArticle extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'nom',
+        "estObligatoire",
+        'type_article_id'
+    ];
+
     public function typeArticle()
     {
         return $this->belongsTo(TypeArticle::class, "type_article_id", "id");
