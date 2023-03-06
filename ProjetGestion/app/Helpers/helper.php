@@ -30,14 +30,16 @@ function contains($container, $contenu):bool
 }
 
 
-function setMenuClass($route, $classe):string
+function setMenuClass(string $route, string $classe):string
 {
     $routeActuelle = request()->route()->getName();
     if (contains($routeActuelle, $route)){
         return $classe;
     }
     return "";
-}function setMenuActive($route):string
+}
+
+function setMenuActive($route):string
 {
     $routeActuelle = request()->route()->getName();
     if ($routeActuelle === $route){

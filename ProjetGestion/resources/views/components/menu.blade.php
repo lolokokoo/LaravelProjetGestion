@@ -60,8 +60,8 @@
             </ul>
         </li>
 
-        <li class="nav-item {{ setMenuClass('admin.typesarticles.', 'menu-open') }}">
-            <a href="#" class="nav-link {{ setMenuClass('admin.typesarticles.', 'active') }}">
+        <li class="nav-item {{ setMenuClass('admin.typesarticles.', 'menu-open') }}{{ setMenuClass('admin.proprietetypearticle.', 'menu-open') }}{{ setMenuClass('admin.articles.', 'menu-open') }}">
+            <a href="#" class="nav-link {{ setMenuClass('admin.proprietetypearticle.', 'active') }}{{ setMenuClass('admin.typesarticles.', 'active') }}{{ setMenuClass('admin.articles.', 'active') }}">
                 <i class="nav-icon fas fa-cogs"></i>
                 <p>
                     Gestion articles
@@ -71,14 +71,14 @@
             <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a href="{{ route('admin.typesarticles.index') }}"
-                       class="nav-link {{ setMenuClass('admin.typesarticles.', 'active') }}">
+                       class="nav-link {{ setMenuClass('admin.typesarticles.', 'active') }}{{ setMenuClass('admin.proprietetypearticle.', 'active') }}">
                         <i class="nav-icon far fa-circle"></i>
                         <p>Type d'articles</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href=""
-                       class="nav-link ">
+                    <a href=" {{ route('admin.articles.index') }}"
+                       class="nav-link {{ setMenuClass('admin.articles.', 'active') }}">
                         <i class="nav-icon fas fa-list-ul"></i>
                         <p>Articles</p>
                     </a>
