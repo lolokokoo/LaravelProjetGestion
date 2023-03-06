@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProprieteTypeArticleController;
 use App\Http\Controllers\TypeArticleController;
 use App\Http\Controllers\UserController;
@@ -78,6 +79,13 @@ Route::group([
         Route::post("/update/{id}", [ProprieteTypeArticleController::class,'update'])->name("update");
 
         Route::get("/delete/{type_article_id}/{id}", [ProprieteTypeArticleController::class,'delete'])->name("delete");
+    });
+
+    Route::group([
+        "prefix" => "articles",
+        "as" => "articles."
+    ], function (){
+        Route::get("/index", [ArticleController::class,'index'])->name("index");
     });
 });
 

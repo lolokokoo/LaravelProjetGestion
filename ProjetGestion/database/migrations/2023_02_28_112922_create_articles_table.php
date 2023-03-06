@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("nom")->unique();
             $table->string("noSerie")->unique();
             $table->string("imageUrl")->nullable();
-            $table->boolean("estDisponible")->default(1);
+            $table->boolean("estDisponible")->default(true);
             $table->foreignId("type_article_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

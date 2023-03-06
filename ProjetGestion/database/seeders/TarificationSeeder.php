@@ -12,7 +12,7 @@ class TarificationSeeder extends Seeder
      */
     public function run(): void
     {
-        Tarification::factory(10)->create();
+        Tarification::factory(5)->create();
 
     }
 }
