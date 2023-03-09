@@ -14,6 +14,11 @@ class ArticleController extends Controller
         'nom.unique' => 'Ce nom est déjà utilisé.',
         'noSerie.required' => 'Le champ noSerie est obligatoire.',
         'noSerie.unique' => 'Ce noSerie est déjà utilisé.',
+        'image.required' => 'Le champ image est obligatoire.',
+        'image.file' => 'Le champ image doit être un fichier.',
+        'image.image' => 'Le champ image doit être une image.',
+        'image.mimes' => 'Le champ image doit être au format JPG, PNG ou JPEG.',
+        'image.max' => 'Le champ image ne doit pas dépasser 5 Mo.'
     ];
 
     /**
@@ -45,17 +50,25 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $image = $request->file('image');
-        $filename = uniqid() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('img/articles'), $filename);
-        $estDisponible = $request->has('estDisponible');
-
         $validated = $request->validate([
             'nom' => ['required', Rule::unique("articles", "nom")],
             'noSerie' => ['required', Rule::unique("articles", "noSerie")],
             'type_article_id' => ['required'],
             'estDisponible' => 'required',
+            'image' => [
+                'required',
+                'file',
+                'image',
+                'mimes:jpg,png,jpeg',
+                'max:5000',
+            ]
         ], $this->messagesError);
+
+        $image = $request->file('image');
+        $filename = uniqid() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('img/articles'), $filename);
+        $estDisponible = $request->has('estDisponible');
+
         $validated['imageUrl'] = $filename;
         $validated['estDisponible'] = $estDisponible;
         Article::create($validated);

@@ -36,7 +36,10 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input type="file" class="form-control-file" id="image" name="image">
+                            <input type="file" class="form-control-file @error('image') is-invalid @enderror" id="image" name="image">
+                            @error("image")
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                             <input type="checkbox" class="custom-control-input" id="estDisponible" name="estDisponible">
