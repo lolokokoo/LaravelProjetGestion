@@ -89,6 +89,8 @@ Route::group([
 
         Route::get('/create', [ArticleController::class,'create'])->name('create');
         Route::post('/store', [ArticleController::class,'store'])->name('store');
+
+        Route::get('/delete/{id}', [ArticleController::class,'delete'])->name('delete');
     });
 });
 

@@ -34,7 +34,7 @@
                                         </a>
                                     </div>
                                     <div>
-                                        <a href="">
+                                        <a href="{{ route('admin.articles.delete', ['id' => $article->id]) }}">
                                             <span class="badge badge-danger"><i class="fa fa-trash-alt"></i> Supprimer</span>
                                         </a>
                                     </div>

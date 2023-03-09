@@ -54,7 +54,6 @@ class ArticleController extends Controller
             'nom' => ['required', Rule::unique("articles", "nom")],
             'noSerie' => ['required', Rule::unique("articles", "noSerie")],
             'type_article_id' => ['required'],
-            'estDisponible' => 'required',
             'image' => [
                 'required',
                 'file',
@@ -103,8 +102,10 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
-        //
+        Article::destroy($id);
+
+        return redirect()->route('admin.articles.index')->with('success', 'Article supprimé avec succès!');
     }
 }
