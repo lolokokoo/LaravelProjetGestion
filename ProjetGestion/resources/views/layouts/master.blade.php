@@ -43,13 +43,11 @@
             </div>
         </div>
     </div>
-
-
-    <!-- Right sidebar -->
-    <x-sidebar/>
-    <!-- End sidebar -->
 </div>
 
+<!-- Right sidebar -->
+<x-sidebar/>
+<!-- End sidebar -->
 
 <footer class="main-footer ml-0 text-center position-relative">
     <div class="float-right d-none d-sm-inline">
