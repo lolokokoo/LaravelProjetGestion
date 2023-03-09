@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\ProprieteArticle;
 use App\Models\ProprieteTypeArticle;
 use App\Models\TypeArticle;
 use Illuminate\Http\Request;

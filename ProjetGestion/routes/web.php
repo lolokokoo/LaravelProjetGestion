@@ -85,7 +85,10 @@ Route::group([
         "prefix" => "articles",
         "as" => "articles."
     ], function (){
-        Route::get("/index", [ArticleController::class,'index'])->name("index");
+        Route::get('/index', [ArticleController::class,'index'])->name('index');
+
+        Route::get('/create', [ArticleController::class,'create'])->name('create');
+        Route::post('/store', [ArticleController::class,'store'])->name('store');
     });
 });
 

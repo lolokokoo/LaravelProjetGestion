@@ -2,7 +2,7 @@
 
 @section("contenu")
     <div class="mt-1">
-        <a href="">
+        <a href="{{ route('admin.articles.create') }}">
             <span class="badge badge-primary"><i class="fa fa-plus"></i> Nouvel article</span>
         </a>
     </div>
@@ -45,6 +45,5 @@
                 </div>
             </div>
         @endforeach
-
     </div>
 @endsection

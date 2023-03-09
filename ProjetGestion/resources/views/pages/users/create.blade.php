@@ -61,7 +61,7 @@
                         </div>
                         <div class="form-group">
                             <label>Piece d'identité</label>
-                            <select class="form-control @error('pieceIdentite') is-invalid @enderror" name="pieceIdentite">
+                            <select class="form-control custom-select @error('pieceIdentite') is-invalid @enderror" name="pieceIdentite">
                                 <option value="CNI">CNI</option>
                                 <option value="PASSPORT">PASSPORT</option>
                                 <option value="PERMIS DE CONDUIRE">PERMIS DE CONDUIRE</option>
