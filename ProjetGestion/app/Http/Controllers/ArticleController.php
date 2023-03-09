@@ -104,6 +104,13 @@ class ArticleController extends Controller
      */
     public function delete(string $id)
     {
+        $article = Article::findOrFail($id);
+        // Récupérer le chemin complet de l'image à supprimer
+        $imagePath = public_path("img/articles/" . $article->imageUrl);
+        //On supprime l'image
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
         Article::destroy($id);
 
         return redirect()->route('admin.articles.index')->with('success', 'Article supprimé avec succès!');
