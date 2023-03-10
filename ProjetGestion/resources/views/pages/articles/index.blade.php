@@ -29,7 +29,7 @@
                                 <p class="card-text">numero de série {{ $article->noSerie }}</p>
                                 <div class="d-block">
                                     <div>
-                                        <a href="" class="text-decoration-none">
+                                        <a href="{{ route('admin.articles.edit', ['id' => $article->id]) }}" class="text-decoration-none">
                                             <span class="badge badge-warning"><i class="far fa-edit"></i> Modifier</span>
                                         </a>
                                     </div>

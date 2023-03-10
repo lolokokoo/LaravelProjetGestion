@@ -90,6 +90,9 @@ Route::group([
         Route::get('/create', [ArticleController::class,'create'])->name('create');
         Route::post('/store', [ArticleController::class,'store'])->name('store');
 
+        Route::get('/edit/{id}', [ArticleController::class,'edit'])->name('edit');
+        Route::post('/update/{id}', [ArticleController::class,'update'])->name('update');
+
         Route::get('/delete/{id}', [ArticleController::class,'delete'])->name('delete');
     });
 });

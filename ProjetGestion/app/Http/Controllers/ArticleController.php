@@ -88,7 +88,12 @@ class ArticleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $article = Article::findOrFail($id);
+        $types_article = TypeArticle::all();
+        return view('pages.articles.edit', [
+            'article' => $article,
+            'types_article' => $types_article
+        ]);
     }
 
     /**
