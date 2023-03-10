@@ -46,7 +46,7 @@
                         <div>
                             <b class="mt-2">Image actuelle :</b>
                         </div>
-                        <img src="{{ asset('img/articles/' . $article->imageUrl) }}" style="max-height: 100px" class="mt-2">
+                        <img src="{{ asset('img/articles/' . $article->imageUrl) }}" style="max-height: 100px; max-width: 100px" class="mt-2">
 
 
                         <div class="form-group mt-2">
@@ -64,7 +64,10 @@
                             >
                             <label class="custom-control-label" for="estDisponible">Disponible ?</label>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-sm mt-2">Créer l'article</button>
+                        <button type="submit" class="btn btn-primary btn-sm mt-2">Editer l'article</button>
+                        <a href="{{ route('admin.articles.index') }}">
+                            <button type="button" class="btn btn-danger btn-sm mt-2">Retour</button>
+                        </a>
                     </form>
                 </div>
             </div>

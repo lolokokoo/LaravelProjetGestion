@@ -64,7 +64,7 @@ class ArticleController extends Controller
         ], $this->messagesError);
 
         $image = $request->file('image');
-        $filename = uniqid() . '.' . $image->getClientOriginalExtension();
+        $filename = str_replace(' ', '_', $image->getClientOriginalName());
         $image->move(public_path('img/articles'), $filename);
         $estDisponible = $request->has('estDisponible');
 
@@ -121,7 +121,7 @@ class ArticleController extends Controller
             //On ajoute l'image dans le dossier public
 
             $image = $request->file('image');
-            $filename = uniqid() . '.' . $image->getClientOriginalExtension();
+            $filename = str_replace(' ', '_', $image->getClientOriginalName());
             $image->move(public_path('img/articles'), $filename);
             $validated['imageUrl'] = $filename;
 
@@ -154,9 +154,13 @@ class ArticleController extends Controller
         $article = Article::findOrFail($id);
         // Récupérer le chemin complet de l'image à supprimer
         $imagePath = public_path("img/articles/" . $article->imageUrl);
+        $article_same_image_url = Article::where('imageUrl', $article->imageUrl)->get();
         //On supprime l'image
-        if (file_exists($imagePath)) {
-            unlink($imagePath);
+        if (count($article_same_image_url) == 1){
+            $imagePath = public_path("img/articles/" . $article->imageUrl);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
         }
         Article::destroy($id);
 
