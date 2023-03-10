@@ -43,7 +43,14 @@
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        <div>
+                            <b class="mt-2">Image actuelle :</b>
+                        </div>
+                        <img src="{{ asset('img/articles/' . $article->imageUrl) }}" style="max-height: 100px" class="mt-2">
+
+
+                        <div class="form-group mt-2">
+                            <label for="image">Nouvelle image ?</label>
                             <input type="file" class="form-control-file @error('image') is-invalid @enderror" id="image" name="image">
                             @error("image")
                             <span class="text-danger">{{ $message }}</span>

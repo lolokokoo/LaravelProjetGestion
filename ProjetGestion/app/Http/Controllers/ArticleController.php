@@ -101,7 +101,49 @@ class ArticleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'nom' => ['required', Rule::unique("articles", "nom")->ignore($id)],
+            'noSerie' => ['required', Rule::unique("articles", "noSerie")->ignore($id)],
+            'type_article_id' => ['required'],
+            'image' => [
+                'file',
+                'image',
+                'mimes:jpg,png,jpeg',
+                'max:5000',
+            ]
+        ], $this->messagesError);
+
+        $article = Article::findOrFail($id);
+
+        //Si on change l'image
+        if ($request->file('image')){
+
+            //On ajoute l'image dans le dossier public
+
+            $image = $request->file('image');
+            $filename = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('img/articles'), $filename);
+            $validated['imageUrl'] = $filename;
+
+            //On cherche si d'autres articles utilisent cette image
+            $article_same_image_url = Article::where('imageUrl', $article->imageUrl)->get();
+
+            //Si aucun article utilise la même image
+            if (count($article_same_image_url) == 1){
+                $imagePath = public_path("img/articles/" . $article->imageUrl);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            unset($validated['image']);
+        }
+        $validated['estDisponible'] = $request->has('estDisponible');
+
+
+
+        Article::where('id', $id)->update($validated);
+
+        return redirect()->route('admin.articles.index');
     }
 
     /**
