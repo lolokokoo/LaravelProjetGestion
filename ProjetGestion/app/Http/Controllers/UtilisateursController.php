@@ -37,15 +37,13 @@ class UtilisateursController extends Component
 
     public $rolesPermissions = [];
 
-    public function index()
+    public function index(Request $request)
     {
-        Carbon::setLocale("fr");
-        Paginator::useBootstrap();
-        $users = User::paginate(10);
+        if ($request->ajax()){
+            return datatables()->of(User::all())->toJson();
+        }
 
-        return view('pages.users.index', [
-            "users" => $users,
-        ]);
+        return view('pages.users.indexdata');
     }
 
     public function create()
