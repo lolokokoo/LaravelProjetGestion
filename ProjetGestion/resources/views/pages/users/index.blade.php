@@ -1,21 +1,26 @@
 @extends('layouts.master')
 
 @section("contenu")
-    <div class="container">
-        <h2>Liste des utilisateurs</h2>
-        <table class="table table-bordered table-striped" id="data-table" data-page-length='25' data-order='[[ 2, "asc" ]]'>
-            <thead>
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Liste des utilisateurs</div>
+            </div>
+            <table class="table table-bordered table-striped" id="data-table" data-page-length='25' data-order='[[ 2, "asc" ]]'>
+                <thead>
                 <tr>
                     <th>Id</th>
                     <th>Nom</th>
                     <th>Prenom</th>
+                    <th>Updated at</th>
                     <th>Actions</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script type="text/javascript">
@@ -28,7 +33,7 @@
                 searching: true,
                 paging: true,
                 ajax: table,
-                scrollY: 200,
+                scrollY: 300,
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.11.1/i18n/fr_fr.json'
                 },
@@ -36,6 +41,13 @@
                     {data: 'id', name: 'id'},
                     {data: 'nom', name: 'nom'},
                     {data: 'prenom', name: 'prenom'},
+                    {
+                        data: 'updated_at',
+                        name: 'updated_at',
+                        render: function (data, type, row){
+                            return moment(data).fromNow();
+                        }
+                    },
                     {
                         data: null,
                         width: '70px',
