@@ -23,6 +23,10 @@ class Location extends Model
     {
         return $this->belongsTo(StatutLocation::class, "statut_location_id", "id");
     }
+    public function dureesLocation()
+    {
+        return $this->belongsTo(DureeLocation::class, "duree_location_id", "id");
+    }
 
     public function paiments()
     {
