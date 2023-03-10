@@ -43,7 +43,7 @@ class UtilisateursController extends Component
             return datatables()->of(User::all())->toJson();
         }
 
-        return view('pages.users.indexdata');
+        return view('pages.users.index');
     }
 
     public function create()
