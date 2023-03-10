@@ -29,17 +29,21 @@
                 paging: true,
                 ajax: table,
                 scrollY: 200,
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.11.1/i18n/fr_fr.json'
+                },
                 columns: [
                     {data: 'id', name: 'id'},
                     {data: 'nom', name: 'nom'},
                     {data: 'prenom', name: 'prenom'},
                     {
                         data: null,
+                        width: '70px',
                         orderable: false,
                         searchable: false,
                         render: function (data, type, row, meta) {
-                            // Ajoutez un bouton "Modifier" qui redirige vers un formulaire de modification
-                            return '<a class="text-decoration-none" href="{{ route('admin.users.edit', ['id' => '_id_']) }}"><i class="far fa-edit"></i></a>'.replace('_id_', row.id) + ' <a class="text-decoration-none" href="{{ route('admin.users.delete', ['id' => '_id_']) }}"><i class="far fa-trash-alt"></i></a>'.replace('_id_', row.id);
+                            // Ajoutez un bouton "Modifier et supprimer" qui redirige vers un formulaire de modification
+                            return '<div class="text-center"><a class="text-decoration-none" href="{{ route('admin.users.edit', ['id' => '_id_']) }}"><i class="far fa-edit"></i></a>'.replace('_id_', row.id) + ' <a class="text-decoration-none" href="{{ route('admin.users.delete', ['id' => '_id_']) }}"><i class="far fa-trash-alt"></i></a></div>'.replace('_id_', row.id);
                         }
                     }
                 ]
