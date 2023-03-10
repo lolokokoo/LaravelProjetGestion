@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             StatutLocationSeeder::class,
             ClientSeeder::class,
             TarificationSeeder::class,
+            LocationSeeder::class,
         ]);
     }
 }

@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Client;
+use App\Models\DureeLocation;
+use App\Models\StatutLocation;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,9 +20,17 @@ class LocationFactory extends Factory
      */
     public function definition(): array
     {
+        $durees_location = DureeLocation::all();
+        $clients = Client::all();
+        $users = User::all();
+        $status = StatutLocation::all();
         return [
-           // "dateDebut" => $this->faker->dateTimeBetween('-1 years','-1 month'),
-            //"dateFin" => $this->faker->dateTimeBetween('-1 month'),
+            "dateDebut" => $this->faker->dateTimeBetween('-1 years','-1 month'),
+            "dateFin" => $this->faker->dateTimeBetween('-1 month'),
+            "duree_location_id" => array_rand($durees_location->toArray()) + 1,
+            "client_id" => array_rand($clients->toArray()) + 1,
+            "user_id" => array_rand($users->toArray()) + 1,
+            "statut_location_id" => array_rand($status->toArray()) + 1,
         ];
     }
 }

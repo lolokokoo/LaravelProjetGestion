@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId("client_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId("user_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId("statut_location_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
