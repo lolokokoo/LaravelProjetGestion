@@ -18,9 +18,12 @@ class LocationController extends Controller
         foreach ($locations as $location) {
             $event = [
                 'id' => $location->id,
+                'duree_location_id' =>$location->duree_location_id,
                 'title' => $location->article->nom,
                 'start' => $location->dateDebut,
                 'end' => $location->dateFin,
+                //Couleur en fonction du duree_location_id
+                'backgroundColor' => ["green", "red", "blue"][$location->duree_location_id - 1]
             ];
 
             array_push($events, $event);

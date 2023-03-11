@@ -4628,17 +4628,13 @@ readers do not read off random characters that represent icons */
 
 
 
-.fc-daygrid-day-number {
+.fc-daygrid-day-number,
+.fc-col-header-cell-cushion,
+.fc-list-day-text,
+.fc-list-day-side-text {
     text-decoration: none;
+    color: black;
 }
 
-.fc-col-header-cell-cushion {
-    text-decoration: none;
-}
-.fc-list-day-text{
-    text-decoration: none;
-}
-.fc-list-day-side-text{
 
-    text-decoration: none;
-}
+
