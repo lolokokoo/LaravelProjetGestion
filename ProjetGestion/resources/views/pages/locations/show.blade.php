@@ -6,7 +6,7 @@
             <h5 class="card-title">Récapitulatif location n°{{ $location->id }}</h5>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped table-responsive">
                 <thead>
                     <tr>
                         <th>Nom article</th>
