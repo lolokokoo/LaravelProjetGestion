@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
+use App\Models\Location;
 use App\Models\ProprieteTypeArticle;
 use Illuminate\Database\Seeder;
 

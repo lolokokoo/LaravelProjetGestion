@@ -28,13 +28,13 @@ class Location extends Model
         return $this->belongsTo(DureeLocation::class, "duree_location_id", "id");
     }
 
+    public function article()
+    {
+        return $this->belongsTo(Article::class, "article_id", "id");
+    }
+
     public function paiments()
     {
         return $this->hasMany(Paiment::class);
-    }
-
-    public function articles()//Relation ManyToMany
-    {
-        return $this->belongsToMany(Article::class, "article_location", "location_id", "article_id");
     }
 }

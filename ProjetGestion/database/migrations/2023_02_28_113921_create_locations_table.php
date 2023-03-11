@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->dateTime("dateDebut");
             $table->dateTime("dateFin");
+            $table->foreignId("article_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId("duree_location_id")->constrained('duree_locations')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId("client_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId("user_id")->constrained()->onUpdate('cascade')->onDelete('cascade');
@@ -33,7 +34,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('locations', function(Blueprint $table){
-            $table->dropForeign(["duree_location_id", "client_id", "user_id", "statut_location_id"]);
+            $table->dropForeign(["article_id", "duree_location_id", "client_id", "user_id", "statut_location_id"]);
         });
 
         Schema::dropIfExists('locations');

@@ -18,7 +18,7 @@ class LocationController extends Controller
         foreach ($locations as $location) {
             $event = [
                 'id' => $location->id,
-                'title' => $location->id,
+                'title' => $location->article->nom,
                 'start' => $location->dateDebut,
                 'end' => $location->dateFin,
             ];
