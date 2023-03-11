@@ -53,7 +53,11 @@ class LocationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $location = Location::findOrFail($id);
+
+        return view('pages.locations.show', [
+            'location' => $location
+        ]);
     }
 
     /**
