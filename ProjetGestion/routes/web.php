@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProprieteTypeArticleController;
 use App\Http\Controllers\TypeArticleController;
 use App\Http\Controllers\UserController;
@@ -95,6 +96,19 @@ Route::group([
 
         Route::get('/delete/{id}', [ArticleController::class,'delete'])->name('delete');
     });
+});
+
+Route::group([
+    "middleware" => ["auth", "auth.manager"],
+    "as" => "manager."
+], function (){
+    Route::group([
+        "prefix" => "locations",
+        "as" => "locations."
+    ], function (){
+        Route::get("/index", [LocationController::class,'index'])->name("index");
+    });
+
 });
 
 

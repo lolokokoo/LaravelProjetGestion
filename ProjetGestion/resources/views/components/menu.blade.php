@@ -10,8 +10,8 @@
         </li>
 
         @can("manager")
-        <li class="nav-item">
-            <a href="#" class="nav-link">
+        <li class="nav-item {{ setMenuClass('manager.locations.', 'menu-open') }}">
+            <a href="#" class="nav-link {{ setMenuClass('manager.locations.', 'active') }}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Tableau de bord
@@ -26,7 +26,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('manager.locations.index') }}" class="nav-link {{ setMenuClass('manager.locations.', 'active') }}">
                         <i class="nav-icon fas fa-swatchbook"></i>
                         <p>Locations</p>
                     </a>
