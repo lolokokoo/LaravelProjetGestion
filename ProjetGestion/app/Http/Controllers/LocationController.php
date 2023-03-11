@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -11,7 +12,21 @@ class LocationController extends Controller
      */
     public function index()
     {
-        return view('pages.locations.index');
+        $locations = Location::all();
+
+        $events = [];
+        foreach ($locations as $location) {
+            $event = [
+                'id' => $location->id,
+                'title' => $location->id,
+                'start' => $location->dateDebut,
+                'end' => $location->dateFin,
+            ];
+
+            array_push($events, $event);
+        }
+
+        return view('pages.locations.index', compact('events'));
     }
 
     /**

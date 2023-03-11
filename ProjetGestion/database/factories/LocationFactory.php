@@ -25,7 +25,7 @@ class LocationFactory extends Factory
         $users = User::all();
         $status = StatutLocation::all();
         return [
-            "dateDebut" => $this->faker->dateTimeBetween('-1 years','-1 month'),
+            "dateDebut" => $this->faker->dateTimeBetween('-2 month','-1 month'),
             "dateFin" => $this->faker->dateTimeBetween('-1 month'),
             "duree_location_id" => array_rand($durees_location->toArray()) + 1,
             "client_id" => array_rand($clients->toArray()) + 1,
