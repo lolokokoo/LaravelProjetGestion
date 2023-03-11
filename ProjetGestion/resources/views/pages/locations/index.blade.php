@@ -58,6 +58,14 @@
                 //Evenements
                 events: {!! json_encode($events) !!}, // Événements à afficher sur le calendrier
                 displayEventTime: false, // Masquer l'heure de début des événements
+                eventMaxWidth: 50,
+
+                eventClick: function(info) {
+                    // Récupérer l'id de la location associée à l'événement
+                    var locationId = info.event.id;
+                    // Rediriger vers la page de détails de la location
+                    window.location.href = '{{ route("manager.locations.show", ["id" => "_id_"]) }}'.replace('_id_', locationId);
+                }
             });
             calendar.render();
         });

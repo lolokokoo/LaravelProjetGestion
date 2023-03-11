@@ -107,6 +107,8 @@ Route::group([
         "as" => "locations."
     ], function (){
         Route::get("/index", [LocationController::class,'index'])->name("index");
+
+        Route::get("/show/{id}", [LocationController::class,'show'])->name("show");
     });
 
 });
