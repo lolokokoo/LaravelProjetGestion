@@ -33,6 +33,10 @@
                 </tbody>
             </table>
         </div>
+        <div class="card-footer">
+            <a href="{{ route('manager.locations.calendrier') }}">
+                <span class="badge badge-danger">Retour</span>
+            </a>
+        </div>
     </div>
-
 @endsection

@@ -10,7 +10,7 @@ class LocationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function calendrier()
     {
         $locations = Location::all();
 
@@ -30,6 +30,15 @@ class LocationController extends Controller
         }
 
         return view('pages.locations.index', compact('events'));
+    }
+
+    public function index(Request $request)
+    {
+        $locations = Location::all();
+
+        return view('pages.locations.index', [
+            'locations' => $locations
+        ]);
     }
 
     /**

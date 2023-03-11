@@ -20,13 +20,13 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('manager.locations.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-chart-line"></i>
                         <p>Vue globale</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('manager.locations.index') }}" class="nav-link {{ setMenuClass('manager.locations.', 'active') }}">
+                    <a href="{{ route('manager.locations.calendrier') }}" class="nav-link {{ setMenuClass('manager.locations.', 'active') }}">
                         <i class="nav-icon fas fa-swatchbook"></i>
                         <p>Locations</p>
                     </a>

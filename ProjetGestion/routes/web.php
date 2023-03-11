@@ -106,6 +106,7 @@ Route::group([
         "prefix" => "locations",
         "as" => "locations."
     ], function (){
+        Route::get("/calendrier", [LocationController::class,'calendrier'])->name("calendrier");
         Route::get("/index", [LocationController::class,'index'])->name("index");
 
         Route::get("/show/{id}", [LocationController::class,'show'])->name("show");
