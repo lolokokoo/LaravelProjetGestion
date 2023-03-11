@@ -29,10 +29,10 @@ class LocationController extends Controller
             array_push($events, $event);
         }
 
-        return view('pages.locations.index', compact('events'));
+        return view('pages.locations.calendrier', compact('events'));
     }
 
-    public function index(Request $request)
+    public function vueGlobale(Request $request)
     {
         $locations = Location::all();
 

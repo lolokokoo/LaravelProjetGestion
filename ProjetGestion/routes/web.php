@@ -107,7 +107,7 @@ Route::group([
         "as" => "locations."
     ], function (){
         Route::get("/calendrier", [LocationController::class,'calendrier'])->name("calendrier");
-        Route::get("/index", [LocationController::class,'index'])->name("index");
+        Route::get("/vueGlobale", [LocationController::class,'vueGlobale'])->name("vueGlobale");
 
         Route::get("/show/{id}", [LocationController::class,'show'])->name("show");
     });

@@ -20,13 +20,13 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('manager.locations.index') }}" class="nav-link">
+                    <a href="{{ route('manager.locations.vueGlobale') }}" class="nav-link {{ setMenuClass('manager.locations.vueGlobale', 'active') }}">
                         <i class="nav-icon fas fa-chart-line"></i>
                         <p>Vue globale</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('manager.locations.calendrier') }}" class="nav-link {{ setMenuClass('manager.locations.', 'active') }}">
+                    <a href="{{ route('manager.locations.calendrier') }}" class="nav-link {{ setMenuClass('manager.locations.calendrier', 'active') }}{{ setMenuClass('manager.locations.show', 'active') }}">
                         <i class="nav-icon fas fa-swatchbook"></i>
                         <p>Locations</p>
                     </a>
