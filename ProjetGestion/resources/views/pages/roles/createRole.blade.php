@@ -4,8 +4,7 @@
     <form action="{{ route('admin.roles.storeRole') }}" method="POST">
     @csrf
         <div class="row mt-4 d-flex justify-content-center">
-
-            <div class="card-container d-inline-block col-auto">
+            <div class="card-container d-inline-block col-2">
                 <div class="card">
                     <div class="card-body">
                         <table id="roles-table" class="table table-bordered table-striped table-responsive">
@@ -16,7 +15,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="row m-1">
+                                    <td class="row mr-1 ml-1">
                                         <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom">
                                         @error("nom")
                                         <span class="text-danger">{{ $message }}</span>

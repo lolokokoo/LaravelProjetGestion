@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RoleController extends Controller
 {
+
+    private $messagesError =  [
+        'nom.required' => 'Veuillez saisir l nom d\'un role',
+        'nom.unique' => 'Ce role est déjà utilisé.',
+    ];
+
     /**
      * Display a listing of the resource.
      */
@@ -35,7 +42,13 @@ class RoleController extends Controller
      */
     public function storeRole(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nom' => ['required', Rule::unique("roles", "nom")],
+        ], $this->messagesError);
+
+        Role::create($validated);
+
+        return redirect()->route('admin.roles.index')->with('success', 'Role crée avec succès!');
     }
 
     /**
