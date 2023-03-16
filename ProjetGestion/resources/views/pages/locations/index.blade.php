@@ -22,7 +22,7 @@
                 <tbody>
                 @foreach($locations as $location)
                     <tr>
-                        <td>{{ $location->article->nom }}</td>
+                       <td> <a href="{{ route('manager.locations.show', ['id' => $location->id]) }}" class="text-decoration-none text-black">{{ $location->article->nom }}</a></td>
                         <td>{{ $location->article->typeArticle->nom }}</td>
                         <td>{{ \Carbon\Carbon::parse($location->dateDebut)->locale('fr')->isoFormat('dddd D MMMM YYYY, HH:mm') }}</td>
                         <td>{{ \Carbon\Carbon::parse($location->dateFin)->locale('fr')->isoFormat('dddd D MMMM YYYY, HH:mm') }}</td>
