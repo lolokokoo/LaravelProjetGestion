@@ -24,7 +24,7 @@
     <div class="col-lg-2 col-md-12 pr-0 mr-0 ">
         <aside class="sticky-top h-100 sidebar-dark-primary elevation-4 ml-0">
             <a href="index3.html" class="brand-link text-decoration-none">
-                <span class="brand-text font-weight-light"><bold>YBLTD</bold></span>
+                <span class="brand-text font-weight-light"><bold>Mano Locations</bold></span>
             </a>
             <div class="sidebar">
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
