@@ -34,9 +34,16 @@
             </table>
         </div>
         <div class="card-footer">
-            <a href="{{ route('manager.locations.calendrier') }}">
-                <span class="badge badge-danger">Retour</span>
-            </a>
+            <div>
+                <a href="{{ route('manager.locations.calendrier') }}">
+                    <span class="badge badge-danger">Callendrier</span>
+                </a>
+            </div>
+            <div>
+                <a href="{{ route('manager.locations.vueGlobale') }}">
+                    <span class="badge badge-danger">Vue globale</span>
+                </a>
+            </div>
         </div>
     </div>
 @endsection
