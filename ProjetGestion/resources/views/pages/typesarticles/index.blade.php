@@ -12,14 +12,6 @@
                         <h3 class="card-title flex-grow-1"><i class="fa fa-list fa-2x"></i> Liste des types d'articles</h3>
                         <div class="card-tools d-flex align-items-center">
                             <a href=" {{ route('admin.typesarticles.create') }}" class="btn btn-link text-white mr-4 d-block text-decoration-none"><i class="fas fa-user-plus"></i> Nouveau type d'article</a>
-                            <div class="input-group input-group-md" style="width: 250px;">
-                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="card-body table-responsive p-0 table-striped" style="max-height: 300px;">

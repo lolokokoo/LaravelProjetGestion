@@ -47,7 +47,7 @@
         <!-- End navbar top -->
 
         <div class="container">
-            <div class="container-fluid">
+            <div class="container-fluid ">
                 @yield("contenu")
             </div>
         </div>

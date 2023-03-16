@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProprieteTypeArticleController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TypeArticleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UtilisateursController;
@@ -49,6 +50,17 @@ Route::group([
         Route::get('/editPassword/{id}',[UtilisateursController::class, 'editPassword'])->where(['id' => '[0-9]+'])->name('editPassword');
         Route::post('/editRoles/{id}', [UtilisateursController::class, 'editRoles'])->name('editRoles');
     });
+
+    Route::group([
+        "prefix" => "roles",
+        "as" => "roles."
+    ], function (){
+        Route::get("/index", [RoleController::class,'index'])->name("index");
+
+        Route::get('/createRole', [RoleController::class, 'createRole'])->name('createRole');
+        Route::post('/storeRole', [RoleController::class, 'storeRole'])->name('storeRole');
+    });
+
 
     Route::group([
         "prefix" => "typesarticles",
