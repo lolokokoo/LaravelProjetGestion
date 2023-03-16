@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
 @section('contenu')
+    <form action="{{ route('admin.roles.storePermission') }}" method="POST">
+        @csrf
         <div class="row mt-4 d-flex justify-content-center">
             <div class="card-container d-inline-block col-auto">
                 <div class="card">
@@ -43,23 +45,27 @@
                 <div class="card-container">
                     <div class="small-box bg-success">
                         <div class="inner text-center">
-                            <p>Ajouter un role</p>
+                            <p>Valider</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="{{ route('admin.roles.createRole') }}" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+                        <div class="small-box-footer">
+                            <button type="submit" class="btn bg-none"><i class="fas fa-arrow-circle-right"></i></button>
+                        </div>
                     </div>
                 </div>
                 <div class="card-container">
-                    <div class="small-box bg-success">
+                    <div class="small-box bg-danger">
                         <div class="inner text-center">
-                            <p>Ajouter une permission</p>
+                            <p>Annuler</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="{{ route('admin.roles.createPermission') }}" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+                        <div class="small-box-footer">
+                            <a href="{{ route('admin.roles.index') }}" class="btn bg-none"><i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,11 +81,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($permissions as $permission)
                                 <tr>
-                                    <td>{{$permission->nom}}</td>
+                                    <td class="row mr-1 ml-1">
+                                        <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom">
+                                        @error("nom")
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </td>
                                 </tr>
-                            @endforeach
+                                @foreach($permissions as $permission)
+                                    <tr>
+                                        <td>{{$permission->nom}}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
 
@@ -103,4 +117,5 @@
                 </div>
             </div>
         </div>
+    </form>
 @endsection

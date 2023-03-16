@@ -11,8 +11,8 @@ class RoleController extends Controller
 {
 
     private $messagesError =  [
-        'nom.required' => 'Veuillez saisir l nom d\'un role',
-        'nom.unique' => 'Ce role est déjà utilisé.',
+        'nom.required' => 'Veuillez saisir un nom',
+        'nom.unique' => 'Ce nom est déjà utilisé.',
     ];
 
     /**
@@ -49,6 +49,26 @@ class RoleController extends Controller
         Role::create($validated);
 
         return redirect()->route('admin.roles.index')->with('success', 'Role crée avec succès!');
+    }
+
+    public function createPermission()
+    {
+        $roles = Role::all();
+        $permissions = Permission::all();
+
+        return view('pages.roles.createPermission', compact("roles", "permissions"));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function storePermission(Request $request)
+    {
+        $validated = $request->validate([
+            'nom' => ['required', Rule::unique("permissions", "nom")],
+        ], $this->messagesError);
+        Permission::create($validated);
+        return redirect()->route('admin.roles.index')->with('success', 'Permission crée avec succès!');
     }
 
     /**

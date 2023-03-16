@@ -59,6 +59,9 @@ Route::group([
 
         Route::get('/createRole', [RoleController::class, 'createRole'])->name('createRole');
         Route::post('/storeRole', [RoleController::class, 'storeRole'])->name('storeRole');
+
+        Route::get('/createPermission', [RoleController::class, 'createPermission'])->name('createPermission');
+        Route::post('/storePermission', [RoleController::class, 'storePermission'])->name('storePermission');
     });
 
 
